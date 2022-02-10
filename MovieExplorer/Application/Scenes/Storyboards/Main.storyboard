@@ -17,22 +17,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m8v-cO-PI1">
-                                <rect key="frame" x="173.5" y="432.5" width="67" height="31"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
-                                <connections>
-                                    <action selector="openDetail:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Kao-Mo-6Na"/>
-                                </connections>
-                            </button>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="LOs-Gy-sIc">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dHy-bU-B5B">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="m8v-cO-PI1" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="I9h-Jv-bGB"/>
-                            <constraint firstItem="m8v-cO-PI1" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="W78-Hh-KgN"/>
+                            <constraint firstItem="LOs-Gy-sIc" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Rmx-bd-8YM"/>
+                            <constraint firstAttribute="bottom" secondItem="LOs-Gy-sIc" secondAttribute="bottom" id="eQ0-zU-8Kf"/>
+                            <constraint firstItem="LOs-Gy-sIc" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="lSd-Om-xX3"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="LOs-Gy-sIc" secondAttribute="trailing" id="oUM-Oq-UFb"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="LOs-Gy-sIc" id="SbQ-fe-9Ar"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
