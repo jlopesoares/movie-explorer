@@ -11,14 +11,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="PosterCollectionViewCell" customModule="MovieExplorer" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="159" height="228"/>
+            <rect key="frame" x="0.0" y="0.0" width="395" height="380"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="159" height="228"/>
+                <rect key="frame" x="0.0" y="0.0" width="395" height="380"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0LG-Yg-MKG">
-                        <rect key="frame" x="0.0" y="0.0" width="159" height="228"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0LG-Yg-MKG">
+                        <rect key="frame" x="0.0" y="0.0" width="395" height="380"/>
                     </imageView>
                 </subviews>
             </view>
@@ -29,11 +29,11 @@
                 <constraint firstAttribute="bottom" secondItem="0LG-Yg-MKG" secondAttribute="bottom" id="Kh2-Tv-9Hf"/>
                 <constraint firstItem="0LG-Yg-MKG" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="aAM-zJ-t1f"/>
             </constraints>
-            <size key="customSize" width="159" height="228"/>
+            <size key="customSize" width="395" height="380"/>
             <connections>
                 <outlet property="posterImageView" destination="0LG-Yg-MKG" id="fOs-Oq-m1e"/>
             </connections>
-            <point key="canvasLocation" x="216.66666666666669" y="174.10714285714286"/>
+            <point key="canvasLocation" x="121.0144927536232" y="225"/>
         </collectionViewCell>
     </objects>
 </document>

@@ -6,10 +6,16 @@
 //
 
 import UIKit
+import Kingfisher
 
 class PosterCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet weak var posterImageView: UIImageView!
+    @IBOutlet weak var posterImageView: UIImageView! {
+        didSet {
+            posterImageView.layer.cornerRadius = 12.0
+            posterImageView.layer.masksToBounds = true
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,7 +27,7 @@ class PosterCollectionViewCell: UICollectionViewCell {
         posterImageView.image = nil
     }
     
-    func setup(image: UIImage) {
-        posterImageView.image = image
+    func setup(movie: Movie) {
+        posterImageView.kf.setImage(with: movie.backdropURL.absoluteURL)
     }
 }

@@ -28,7 +28,12 @@ class CatalogCoordinator: Coordinator, DetailCoordinateFlow {
         
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let vc = storyboard.instantiateViewController(withIdentifier: String(describing: CatalogViewController.self)) as! CatalogViewController
+        
+        let viewModel = CatalogViewModel(service: MovieService())
+        
         vc.catalogCoordinator = self
+        vc.viewModel = viewModel
+        
         navigationController.setViewControllers([vc], animated: false)
     }
     

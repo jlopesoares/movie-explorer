@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7189F9E627BAF22200EEA23E /* MovieServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7189F9E527BAF22200EEA23E /* MovieServices.swift */; };
+		7189F9E927BB053B00EEA23E /* Rail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7189F9E827BB053B00EEA23E /* Rail.swift */; };
+		7189F9EC27BB09D400EEA23E /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 7189F9EB27BB09D400EEA23E /* Kingfisher */; };
 		7192B4F927B472CB00878171 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7192B4F827B472CB00878171 /* Coordinator.swift */; };
 		7192B4FB27B472F500878171 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7192B4FA27B472F500878171 /* AppCoordinator.swift */; };
 		7192B4FE27B4734000878171 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7192B4FD27B4734000878171 /* Main.storyboard */; };
@@ -17,12 +20,17 @@
 		7192B50C27B47CD300878171 /* CatalogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7192B50B27B47CD300878171 /* CatalogViewController.swift */; };
 		7192B51B27B496C700878171 /* PosterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7192B51927B496C700878171 /* PosterCollectionViewCell.swift */; };
 		7192B51C27B496C700878171 /* PosterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7192B51A27B496C700878171 /* PosterCollectionViewCell.xib */; };
+		7192B51F27B49C8C00878171 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7192B51E27B49C8C00878171 /* Movie.swift */; };
+		71BB21AC27BB150400B8F0CF /* DetailedMovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BB21AA27BB150400B8F0CF /* DetailedMovieCollectionViewCell.swift */; };
+		71BB21AD27BB150400B8F0CF /* DetailedMovieCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 71BB21AB27BB150400B8F0CF /* DetailedMovieCollectionViewCell.xib */; };
 		71D0026B27B1FBBE00451BD0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D0026A27B1FBBE00451BD0 /* AppDelegate.swift */; };
 		71D0027427B1FBBF00451BD0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71D0027327B1FBBF00451BD0 /* Assets.xcassets */; };
 		71D0027727B1FBBF00451BD0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71D0027527B1FBBF00451BD0 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7189F9E527BAF22200EEA23E /* MovieServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieServices.swift; sourceTree = "<group>"; };
+		7189F9E827BB053B00EEA23E /* Rail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rail.swift; sourceTree = "<group>"; };
 		7192B4F827B472CB00878171 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		7192B4FA27B472F500878171 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		7192B4FD27B4734000878171 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -34,6 +42,9 @@
 		7192B51327B493AB00878171 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7192B51927B496C700878171 /* PosterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterCollectionViewCell.swift; sourceTree = "<group>"; };
 		7192B51A27B496C700878171 /* PosterCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PosterCollectionViewCell.xib; sourceTree = "<group>"; };
+		7192B51E27B49C8C00878171 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		71BB21AA27BB150400B8F0CF /* DetailedMovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedMovieCollectionViewCell.swift; sourceTree = "<group>"; };
+		71BB21AB27BB150400B8F0CF /* DetailedMovieCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailedMovieCollectionViewCell.xib; sourceTree = "<group>"; };
 		71D0026727B1FBBE00451BD0 /* MovieExplorer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieExplorer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71D0026A27B1FBBE00451BD0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		71D0027327B1FBBF00451BD0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -45,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7189F9EC27BB09D400EEA23E /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,9 +74,11 @@
 		7192B4D527B1FCF500878171 /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				7192B51627B4965200878171 /* Views */,
+				7192B51D27B49C7C00878171 /* Domain */,
 				7192B4F527B4729500878171 /* Coordinator */,
 				7192B4D727B1FD2C00878171 /* Scenes */,
+				7192B52027B73F8B00878171 /* Network */,
+				7192B51627B4965200878171 /* Views */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -128,10 +142,37 @@
 		7192B51727B4965F00878171 /* CollectionViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				71BB21A927BB14E800B8F0CF /* DetailedMovieCell */,
 				7192B51927B496C700878171 /* PosterCollectionViewCell.swift */,
 				7192B51A27B496C700878171 /* PosterCollectionViewCell.xib */,
 			);
 			path = CollectionViewCells;
+			sourceTree = "<group>";
+		};
+		7192B51D27B49C7C00878171 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				7192B51E27B49C8C00878171 /* Movie.swift */,
+				7189F9E827BB053B00EEA23E /* Rail.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		7192B52027B73F8B00878171 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				7189F9E527BAF22200EEA23E /* MovieServices.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		71BB21A927BB14E800B8F0CF /* DetailedMovieCell */ = {
+			isa = PBXGroup;
+			children = (
+				71BB21AA27BB150400B8F0CF /* DetailedMovieCollectionViewCell.swift */,
+				71BB21AB27BB150400B8F0CF /* DetailedMovieCollectionViewCell.xib */,
+			);
+			path = DetailedMovieCell;
 			sourceTree = "<group>";
 		};
 		71D0025E27B1FBBE00451BD0 = {
@@ -176,6 +217,9 @@
 			dependencies = (
 			);
 			name = MovieExplorer;
+			packageProductDependencies = (
+				7189F9EB27BB09D400EEA23E /* Kingfisher */,
+			);
 			productName = MovieExplorer;
 			productReference = 71D0026727B1FBBE00451BD0 /* MovieExplorer.app */;
 			productType = "com.apple.product-type.application";
@@ -204,6 +248,9 @@
 				Base,
 			);
 			mainGroup = 71D0025E27B1FBBE00451BD0;
+			packageReferences = (
+				7189F9EA27BB09D400EEA23E /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = 71D0026827B1FBBE00451BD0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -218,6 +265,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71BB21AD27BB150400B8F0CF /* DetailedMovieCollectionViewCell.xib in Resources */,
 				7192B4FE27B4734000878171 /* Main.storyboard in Resources */,
 				7192B51C27B496C700878171 /* PosterCollectionViewCell.xib in Resources */,
 				71D0027727B1FBBF00451BD0 /* LaunchScreen.storyboard in Resources */,
@@ -234,11 +282,15 @@
 			files = (
 				7192B51B27B496C700878171 /* PosterCollectionViewCell.swift in Sources */,
 				7192B50C27B47CD300878171 /* CatalogViewController.swift in Sources */,
+				7189F9E627BAF22200EEA23E /* MovieServices.swift in Sources */,
 				71D0026B27B1FBBE00451BD0 /* AppDelegate.swift in Sources */,
 				7192B4F927B472CB00878171 /* Coordinator.swift in Sources */,
+				7192B51F27B49C8C00878171 /* Movie.swift in Sources */,
 				7192B50A27B47BE200878171 /* DetailsViewController.swift in Sources */,
+				71BB21AC27BB150400B8F0CF /* DetailedMovieCollectionViewCell.swift in Sources */,
 				7192B50327B4775A00878171 /* CatalogViewModel.swift in Sources */,
 				7192B50827B47B6700878171 /* DetailsCoordinator.swift in Sources */,
+				7189F9E927BB053B00EEA23E /* Rail.swift in Sources */,
 				7192B50527B4794A00878171 /* CatalogCoordinator.swift in Sources */,
 				7192B4FB27B472F500878171 /* AppCoordinator.swift in Sources */,
 			);
@@ -450,6 +502,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7189F9EA27BB09D400EEA23E /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7189F9EB27BB09D400EEA23E /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7189F9EA27BB09D400EEA23E /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 71D0025F27B1FBBE00451BD0 /* Project object */;
 }

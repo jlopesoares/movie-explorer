@@ -54,18 +54,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="op3-Gs-6xf">
-                                <rect key="frame" x="185" y="437.5" width="44" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="free2" translatesAutoresizingMaskIntoConstraints="NO" id="Bl8-jL-cVX">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="600"/>
+                            </imageView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gXe-1R-3UY">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="IdZ-ld-ifb">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="tc7-Lv-IxB"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="op3-Gs-6xf" firstAttribute="centerY" secondItem="0mL-nH-COB" secondAttribute="centerY" id="AqK-bY-CoW"/>
-                            <constraint firstItem="op3-Gs-6xf" firstAttribute="centerX" secondItem="0mL-nH-COB" secondAttribute="centerX" id="NUr-OP-zu7"/>
+                            <constraint firstAttribute="bottom" secondItem="gXe-1R-3UY" secondAttribute="bottom" id="9F5-RP-aRc"/>
+                            <constraint firstItem="tc7-Lv-IxB" firstAttribute="trailing" secondItem="Bl8-jL-cVX" secondAttribute="trailing" id="DCp-bA-Omu"/>
+                            <constraint firstItem="Bl8-jL-cVX" firstAttribute="top" secondItem="0mL-nH-COB" secondAttribute="top" id="Jm3-mD-fJw"/>
+                            <constraint firstItem="gXe-1R-3UY" firstAttribute="leading" secondItem="tc7-Lv-IxB" secondAttribute="leading" id="L44-6m-Pmd"/>
+                            <constraint firstItem="tc7-Lv-IxB" firstAttribute="trailing" secondItem="gXe-1R-3UY" secondAttribute="trailing" id="TCH-h4-WbD"/>
+                            <constraint firstItem="Bl8-jL-cVX" firstAttribute="leading" secondItem="tc7-Lv-IxB" secondAttribute="leading" id="YcO-Mn-cwU"/>
+                            <constraint firstItem="gXe-1R-3UY" firstAttribute="top" secondItem="0mL-nH-COB" secondAttribute="top" id="gMh-yj-5mf"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -75,6 +88,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="free2" width="1066" height="600"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
