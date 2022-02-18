@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7126F28527C00F8800625513 /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7126F28327C00F8800625513 /* HeaderCollectionReusableView.swift */; };
+		7126F28627C00F8800625513 /* HeaderCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7126F28427C00F8800625513 /* HeaderCollectionReusableView.xib */; };
+		7126F28827C0170C00625513 /* CatalogViewController+UIFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7126F28727C0170C00625513 /* CatalogViewController+UIFactory.swift */; };
 		7189F9E627BAF22200EEA23E /* MovieServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7189F9E527BAF22200EEA23E /* MovieServices.swift */; };
 		7189F9E927BB053B00EEA23E /* Rail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7189F9E827BB053B00EEA23E /* Rail.swift */; };
 		7189F9EC27BB09D400EEA23E /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 7189F9EB27BB09D400EEA23E /* Kingfisher */; };
@@ -29,6 +32,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7126F28327C00F8800625513 /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
+		7126F28427C00F8800625513 /* HeaderCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderCollectionReusableView.xib; sourceTree = "<group>"; };
+		7126F28727C0170C00625513 /* CatalogViewController+UIFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CatalogViewController+UIFactory.swift"; sourceTree = "<group>"; };
 		7189F9E527BAF22200EEA23E /* MovieServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieServices.swift; sourceTree = "<group>"; };
 		7189F9E827BB053B00EEA23E /* Rail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rail.swift; sourceTree = "<group>"; };
 		7192B4F827B472CB00878171 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
@@ -63,6 +69,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7126F28227C00F4500625513 /* CatalogHeaders */ = {
+			isa = PBXGroup;
+			children = (
+				7126F28327C00F8800625513 /* HeaderCollectionReusableView.swift */,
+				7126F28427C00F8800625513 /* HeaderCollectionReusableView.xib */,
+			);
+			path = CatalogHeaders;
+			sourceTree = "<group>";
+		};
 		7192B4D427B1FCED00878171 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -115,9 +130,10 @@
 		7192B4FF27B4772C00878171 /* Catalog */ = {
 			isa = PBXGroup;
 			children = (
-				7192B50227B4775A00878171 /* CatalogViewModel.swift */,
 				7192B50427B4794A00878171 /* CatalogCoordinator.swift */,
+				7192B50227B4775A00878171 /* CatalogViewModel.swift */,
 				7192B50B27B47CD300878171 /* CatalogViewController.swift */,
+				7126F28727C0170C00625513 /* CatalogViewController+UIFactory.swift */,
 			);
 			path = Catalog;
 			sourceTree = "<group>";
@@ -142,6 +158,7 @@
 		7192B51727B4965F00878171 /* CollectionViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				7126F28227C00F4500625513 /* CatalogHeaders */,
 				71BB21A927BB14E800B8F0CF /* DetailedMovieCell */,
 				7192B51927B496C700878171 /* PosterCollectionViewCell.swift */,
 				7192B51A27B496C700878171 /* PosterCollectionViewCell.xib */,
@@ -267,6 +284,7 @@
 			files = (
 				71BB21AD27BB150400B8F0CF /* DetailedMovieCollectionViewCell.xib in Resources */,
 				7192B4FE27B4734000878171 /* Main.storyboard in Resources */,
+				7126F28627C00F8800625513 /* HeaderCollectionReusableView.xib in Resources */,
 				7192B51C27B496C700878171 /* PosterCollectionViewCell.xib in Resources */,
 				71D0027727B1FBBF00451BD0 /* LaunchScreen.storyboard in Resources */,
 				71D0027427B1FBBF00451BD0 /* Assets.xcassets in Resources */,
@@ -280,6 +298,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7126F28827C0170C00625513 /* CatalogViewController+UIFactory.swift in Sources */,
+				7126F28527C00F8800625513 /* HeaderCollectionReusableView.swift in Sources */,
 				7192B51B27B496C700878171 /* PosterCollectionViewCell.swift in Sources */,
 				7192B50C27B47CD300878171 /* CatalogViewController.swift in Sources */,
 				7189F9E627BAF22200EEA23E /* MovieServices.swift in Sources */,

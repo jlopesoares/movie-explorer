@@ -16,20 +16,17 @@ final class CatalogViewModel {
         self.service = service
     }
 
-
-
-    
     //MARK: - Service
     func getMovies(completion: @escaping () -> ()) {
         
-
         var gotPopular = false
         var gotNowPlaying = false
+        var gotUpcoming = false
         
         getPopular {
             gotPopular = true
             
-            if gotPopular && gotNowPlaying {
+            if gotPopular && gotNowPlaying && gotUpcoming {
                 completion()
             }
         }
@@ -37,10 +34,17 @@ final class CatalogViewModel {
         getNowPlaying {
             gotNowPlaying = true
             
-            if gotPopular && gotNowPlaying {
+            if gotPopular && gotNowPlaying && gotUpcoming {
                 completion()
             }
+        }
+        
+        getUpcoming {
+            gotUpcoming = true
             
+            if gotPopular && gotNowPlaying && gotUpcoming {
+                completion()
+            }
         }
     }
     
@@ -48,7 +52,7 @@ final class CatalogViewModel {
         
         service.fetchMovies(with: .popular) { movie in
             
-            let rail = Rail(name: "Popular", movies: movie.results)
+            let rail = Rail(name: MovieEndpoints.popular.description, movies: movie.results)
             self.datasource.append(rail)
             
             completion()
@@ -60,8 +64,7 @@ final class CatalogViewModel {
     private func getNowPlaying(completion: @escaping () -> ()) {
         
         service.fetchMovies(with: .nowPlaying) { movie in
-            
-            let rail = Rail(name: "now playing", movies: movie.results)
+            let rail = Rail(name: MovieEndpoints.nowPlaying.description, movies: movie.results)
             self.datasource.append(rail)
             completion()
         } failure: { error in
@@ -69,5 +72,16 @@ final class CatalogViewModel {
         }
     }
     
-    
+    private func getUpcoming(completion: @escaping () -> ()) {
+        
+        service.fetchMovies(with: .upcoming) { movie in
+            
+            let rail = Rail(name: MovieEndpoints.upcoming.description, movies: movie.results)
+            self.datasource.append(rail)
+            
+            completion()
+        } failure: { error in
+            print(error)
+        }
+    }
 }
