@@ -7,15 +7,16 @@
 
 import Foundation
 
-enum DetailSections {
+enum DetailSections: Hashable {
     case header
-    case rails
+    case cast
     
-    enum DetailModelType {
-        
-        case detailSection(Movie)
-        case rails(Movie)
-    }
+}
+
+enum DetailModelType: Hashable {
+    
+    case detailSection(Movie?)
+    case cast(Cast)
 }
 
 final class DetailsViewModel {
@@ -24,6 +25,24 @@ final class DetailsViewModel {
     let movieId: String!
     
     var movie: Movie?
+    var cast: [Cast]?
+    
+    
+    func datasource(for section: DetailSections) -> [DetailModelType] {
+        
+        switch section {
+            case .header:
+                return [.detailSection(self.movie)]
+            case .cast:
+                
+                guard let cast = cast else {
+                    return []
+                }
+
+                return cast.map({ DetailModelType.cast($0) })
+        }
+        
+    }
     
     init(movieService: MovieService, movieId: String) {
         self.movieService = movieService
@@ -44,4 +63,20 @@ final class DetailsViewModel {
             completion(result)
         }
     }
+    
+    func fetchMovieCast(completion: @escaping MovieCastCompletion) {
+        
+        movieService.getMovieCast(for: movieId) { result in
+            switch result {
+                case .success(let cast):
+                    self.cast = cast
+                    
+                case .failure(_):
+                    break
+            }
+            
+            completion(result)
+        }
+    }
+    
 }

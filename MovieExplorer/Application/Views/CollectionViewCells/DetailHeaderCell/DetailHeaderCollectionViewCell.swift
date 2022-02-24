@@ -15,11 +15,11 @@ class DetailHeaderCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var mainActionButton: UIButton!
     
-    func setup(movie: Movie.Diffable) {
+    func setup(movie: Movie) {
         disclaimerLabel.text = "Novos episódios todas as semanas"
         
         titleLabel.text = movie.title
         
-        headerImageView.kf.setImage(with: movie.imageURL.absoluteURL)
+        headerImageView.kf.setImage(with: movie.backdropOriginalURL.absoluteURL)
     }
 }

@@ -125,19 +125,19 @@
                                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="T7h-dZ-wge">
                                                                             <rect key="frame" x="129" y="7.5" width="140.5" height="20.5"/>
                                                                             <subviews>
-                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yKd-fg-nHY">
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yKd-fg-nHY">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="41.5" height="20.5"/>
                                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                     <nil key="textColor"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
-                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dH5-Wl-64r">
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dH5-Wl-64r">
                                                                                     <rect key="frame" x="49.5" y="0.0" width="41.5" height="20.5"/>
                                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                     <nil key="textColor"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
-                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mIq-xI-JjL">
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mIq-xI-JjL">
                                                                                     <rect key="frame" x="99" y="0.0" width="41.5" height="20.5"/>
                                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                     <nil key="textColor"/>
@@ -177,6 +177,29 @@
                                             <outlet property="headerImageView" destination="ZuP-s9-AH3" id="7Pl-89-bq7"/>
                                             <outlet property="mainActionButton" destination="uBK-82-Vmb" id="Zjc-bb-B7Y"/>
                                             <outlet property="titleLabel" destination="U6p-D6-uOK" id="7u7-Xg-qTE"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="castCell" id="reW-Lh-fnV" customClass="CastCollectionViewCell" customModule="MovieExplorer" customModuleProvider="target">
+                                        <rect key="frame" x="111.5" y="596" width="191" height="205"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="1gY-n5-kgT">
+                                            <rect key="frame" x="0.0" y="0.0" width="191" height="205"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sEJ-B5-w1b">
+                                                    <rect key="frame" x="0.0" y="0.0" width="191" height="205"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="sEJ-B5-w1b" secondAttribute="bottom" id="ZBb-Ld-Ha3"/>
+                                                <constraint firstAttribute="trailing" secondItem="sEJ-B5-w1b" secondAttribute="trailing" id="btE-YZ-pHj"/>
+                                                <constraint firstItem="sEJ-B5-w1b" firstAttribute="top" secondItem="1gY-n5-kgT" secondAttribute="top" id="jpC-zV-Qhj"/>
+                                                <constraint firstItem="sEJ-B5-w1b" firstAttribute="leading" secondItem="1gY-n5-kgT" secondAttribute="leading" id="pIW-aB-NFr"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="191" height="205"/>
+                                        <connections>
+                                            <outlet property="castImageView" destination="sEJ-B5-w1b" id="NH6-Nf-Kfa"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

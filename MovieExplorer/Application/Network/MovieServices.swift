@@ -8,6 +8,7 @@
 import Foundation
 
 typealias MovieDetailCompletion = (Result<Movie, Error>) -> ()
+typealias MovieCastCompletion = (Result<[Cast], Error>) -> ()
 
 protocol MovieServiceProtocol {
     func fetchMovies(with Endpoint: MovieEndpoints, success: @escaping (_ movie: MoviesResponse)-> Void, failure: @escaping (_ error: ErrorResponse)-> Void)
@@ -70,6 +71,49 @@ class MovieService: MovieServiceProtocol {
             }
         }.resume()
     }
+    
+    
+    func getMovieCast(for identifier: String, completion: @escaping MovieCastCompletion) {
+        
+        //create url components
+        guard var urlComponents = URLComponents(string: "\(baseUrl)/movie/\(identifier)/credits") else {
+            return
+        }
+        
+        //create query items
+        let queryItems = [URLQueryItem(name: "api_key", value: apiKey)]
+        urlComponents.queryItems = queryItems
+        
+        //generate valid url
+        guard let url = urlComponents.url else {
+            return
+        }
+        
+        //perform network request
+        urlSession.dataTask(with: url) { [unowned self] (data, response, error) in
+            
+            if error != nil {
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse, 200..<300 ~= response.statusCode else {
+                return
+            }
+            
+            guard let data = data else {
+                return
+            }
+            
+            do {
+                let cast = try self.jsonDecoder.decode(CastResponse.self, from: data)
+                completion(.success(cast.cast))
+            } catch let error {
+                completion(.failure(error))
+            }
+        }.resume()
+    }
+    
+    
     
     func fetchMovies(with Endpoint: MovieEndpoints, success: @escaping (MoviesResponse) -> Void, failure: @escaping (ErrorResponse) -> Void) {
         
