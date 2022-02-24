@@ -33,7 +33,7 @@ extension CatalogViewController {
 extension CatalogViewController {
     
     func detailedSectionHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
-        NSCollectionLayoutBoundarySupplementaryItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .estimated(150)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+        NSCollectionLayoutBoundarySupplementaryItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(50)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
     }
 }
 
@@ -51,7 +51,7 @@ extension CatalogViewController {
                 case 1:
                     return self.detailedLayoutSection()
                 default:
-                    return self.nowPopularSection()
+                    return self.detailedLayoutSection()
             }
         }
     }
@@ -83,18 +83,17 @@ extension CatalogViewController {
         return section
     }
     
-    
     func detailedLayoutSection() -> NSCollectionLayoutSection {
         
         //1
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalWidth(1.0))
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .absolute(250))
         
         
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 8)
         
         //2
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.3), heightDimension: .absolute(300))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.3), heightDimension: .absolute(250))
         
         //3
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])

@@ -23,43 +23,13 @@ class CatalogViewController: UIViewController, UICollectionViewDelegate {
         }
     }
     
-    var collectionDataSource: UICollectionViewDiffableDataSource<Rail, Movie>!
+    var collectionDataSource: UICollectionViewDiffableDataSource<Rail, Movie.Diffable>!
    
     //Cocoa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionDataSource = UICollectionViewDiffableDataSource(collectionView: collectionView, cellProvider: { collectionView, indexPath, model in
-            
-            if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CatalogControllerConstants.posterCollectionCell, for: indexPath) as? PosterCollectionViewCell,
-               indexPath.section == 0 {
-                cell.setup(movie: model)
-                return cell
-            }
-            
-            if let detailedMovieCell = collectionView.dequeueReusableCell(withReuseIdentifier: CatalogControllerConstants.detailedCollectionCell, for: indexPath) as? DetailedMovieCollectionViewCell,
-               indexPath.section > 0 {
-                detailedMovieCell.setup(movie: model)
-                return detailedMovieCell
-            }
-            
-            return .none
-        })
-        
-        collectionDataSource.supplementaryViewProvider = { (collectionView: UICollectionView, kind: String, indexPath: IndexPath) -> UICollectionReusableView in
-        
-        
-            if kind == UICollectionView.elementKindSectionHeader {
-                
-                let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerCollectionReausableView", for: indexPath) as! HeaderCollectionReusableView
-                header.titleLabel.text = self.viewModel.datasource[indexPath.section].name
-                header.headerButton.setTitle("Ver todos", for: .normal)
-                return header
-            }
-            
-            return UICollectionReusableView()
-        
-        }
+        setupCollectionProvider()
       
         viewModel.getMovies { [weak self] in
             self?.updateCollectionView()
@@ -68,18 +38,16 @@ class CatalogViewController: UIViewController, UICollectionViewDelegate {
     
     func updateCollectionView() {
         
-        var snapshot = NSDiffableDataSourceSnapshot<Rail, Movie>()
+        var snapshot = NSDiffableDataSourceSnapshot<Rail, Movie.Diffable>()
         snapshot.appendSections(viewModel.datasource)
 
         
         for rail in viewModel.datasource {
-            snapshot.appendItems(rail.movies, toSection: rail)
+            snapshot.appendItems(rail.movies.map(Movie.Diffable.init), toSection: rail)
         }
 
         collectionDataSource.apply(snapshot, animatingDifferences: true, completion: nil)
     }
-   
-  
 }
 
 //MARK: - CollectionDataSource
@@ -110,7 +78,6 @@ extension CatalogViewController {
         
         collectionDataSource.supplementaryViewProvider = { (collectionView: UICollectionView, kind: String, indexPath: IndexPath) -> UICollectionReusableView in
         
-        
             if kind == UICollectionView.elementKindSectionHeader {
                 
                 let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerCollectionReausableView", for: indexPath) as! HeaderCollectionReusableView
@@ -128,7 +95,7 @@ extension CatalogViewController {
 extension CatalogViewController {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        catalogCoordinator.coordinateToDetail()
+        catalogCoordinator.coordinateToDetail(with: "\(viewModel.datasource[indexPath.section].movies[indexPath.row].id)")
     }
 }
 

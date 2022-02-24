@@ -29,9 +29,9 @@ class DetailedMovieCollectionViewCell: UICollectionViewCell {
         // Initialization code
     }
     
-    func setup(movie: Movie) {
+    func setup(movie: Movie.Diffable) {
         
-        movieBackgroundImageView.kf.setImage(with: movie.backdropURL.absoluteURL)
+        movieBackgroundImageView.kf.setImage(with: movie.imageURL.absoluteURL)
         
         genderLabel.text = "Drama".uppercased()
         titleLabel.text = movie.title

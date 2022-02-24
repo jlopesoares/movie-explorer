@@ -40,6 +40,10 @@ public struct Movie: Codable, Hashable {
         return URL(string: "https://image.tmdb.org/t/p/w1280\(backdropPath ?? "")")!
     }
     
+    public var backdropOriginalURL: URL {
+        return URL(string: "https://image.tmdb.org/t/p/original\(backdropPath ?? "")")!
+    }
+    
     public var voteAveragePercentText: String {
         return "\(Int(voteAverage * 10))%"
     }
@@ -52,4 +56,23 @@ public struct Movie: Codable, Hashable {
         hasher.combine(id)
     }
     
+}
+
+extension Movie {
+    
+    struct Diffable: Hashable {
+        
+        let id = UUID()
+        let movieIdentifier: Int
+        let title: String
+        let overview: String
+        let imageURL: URL
+        
+        init(movie: Movie) {
+            movieIdentifier = movie.id
+            title = movie.title
+            overview = movie.overview
+            imageURL = movie.backdropURL
+        }
+    }
 }

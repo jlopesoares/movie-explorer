@@ -7,6 +7,8 @@
 
 import Foundation
 
+typealias MovieDetailCompletion = (Result<Movie, Error>) -> ()
+
 protocol MovieServiceProtocol {
     func fetchMovies(with Endpoint: MovieEndpoints, success: @escaping (_ movie: MoviesResponse)-> Void, failure: @escaping (_ error: ErrorResponse)-> Void)
 }
@@ -15,7 +17,7 @@ class MovieService: MovieServiceProtocol {
     
     init(){}
     static let shared = MovieService()
-    private let apiKey = ""
+    private let apiKey = "ae5b867ee790efe19598ff6108ad4e02"
     private let baseUrl = "https://api.themoviedb.org/3"
     private let urlSession = URLSession.shared
     
@@ -27,6 +29,47 @@ class MovieService: MovieServiceProtocol {
         jsonDecoder.dateDecodingStrategy = .formatted(dateFormatter)
         return jsonDecoder
     }()
+    
+    
+    func getMovieDetail(for identifier: String, completion: @escaping MovieDetailCompletion) {
+        
+        //create url components
+        guard var urlComponents = URLComponents(string: "\(baseUrl)/movie/\(identifier)") else {
+            return
+        }
+        
+        //create query items
+        let queryItems = [URLQueryItem(name: "api_key", value: apiKey)]
+        urlComponents.queryItems = queryItems
+        
+        //generate valid url
+        guard let url = urlComponents.url else {
+            return
+        }
+        
+        //perform network request
+        urlSession.dataTask(with: url) { [unowned self] (data, response, error) in
+            
+            if error != nil {
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse, 200..<300 ~= response.statusCode else {
+                return
+            }
+            
+            guard let data = data else {
+                return
+            }
+            
+            do {
+                let movieResponse = try self.jsonDecoder.decode(Movie.self, from: data)
+                completion(.success(movieResponse))
+            } catch let error {
+                completion(.failure(error))
+            }
+        }.resume()
+    }
     
     func fetchMovies(with Endpoint: MovieEndpoints, success: @escaping (MoviesResponse) -> Void, failure: @escaping (ErrorResponse) -> Void) {
         
