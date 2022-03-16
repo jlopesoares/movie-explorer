@@ -12,14 +12,14 @@ public struct CastResponse: Codable {
     public let cast: [Cast]
 }
 
-public struct Cast: Codable, Hashable {
+public struct Cast: Codable, Hashable, ImageUseCase {
     
     let id: Int
     let name: String
     let profilePath: String?
-
+    
     public var profileImageURL: URL? {
-        return URL(string: "https://image.tmdb.org/t/p/w500\(profilePath ?? "")")!
+        getImageUrl(for: profilePath, with: .medium)
     }
     
 }

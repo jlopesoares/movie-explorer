@@ -18,24 +18,18 @@ class DetailedMovieCollectionViewCell: UICollectionViewCell {
     }
     
     @IBOutlet weak var genderLabel: UILabel!
-    
     @IBOutlet weak var titleLabel: UILabel!
-    
     @IBOutlet weak var sinopseLabel: UILabel!
     
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    
     func setup(movie: Movie.Diffable) {
-        
-        movieBackgroundImageView.kf.setImage(with: movie.imageURL.absoluteURL)
         
         genderLabel.text = "Drama".uppercased()
         titleLabel.text = movie.title
         sinopseLabel.text = movie.overview
+        
+        guard let movieURL = movie.imageURL else { return }
+        
+        movieBackgroundImageView.kf.setImage(with: movieURL.absoluteURL)
     }
 
 }

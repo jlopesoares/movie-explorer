@@ -20,6 +20,7 @@ class DetailHeaderCollectionViewCell: UICollectionViewCell {
         
         titleLabel.text = movie.title
         
-        headerImageView.kf.setImage(with: movie.backdropOriginalURL.absoluteURL)
+        guard let backdropOriginalURL = movie.backdropOriginalURL else { return }
+        headerImageView.kf.setImage(with: backdropOriginalURL.absoluteURL)
     }
 }

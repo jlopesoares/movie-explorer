@@ -18,7 +18,7 @@ class MovieService: MovieServiceProtocol {
     
     init(){}
     static let shared = MovieService()
-    private let apiKey = "ae5b867ee790efe19598ff6108ad4e02"
+    private let apiKey = ""
     private let baseUrl = "https://api.themoviedb.org/3"
     private let urlSession = URLSession.shared
     

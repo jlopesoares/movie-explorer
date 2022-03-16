@@ -23,7 +23,7 @@ class DetailsViewController: UIViewController {
         }
     }
     
-    var collectionDataSource: UICollectionViewDiffableDataSource<DetailSections, DetailModelType>!
+    var collectionDataSource: UICollectionViewDiffableDataSource<DetailSections, AnyHashable>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,8 +64,7 @@ class DetailsViewController: UIViewController {
     
     func updateCollectionView() {
         
-        var snapshot = NSDiffableDataSourceSnapshot<DetailSections, DetailModelType>()
-        
+        var snapshot = NSDiffableDataSourceSnapshot<DetailSections, AnyHashable>()
         
         snapshot.appendSections([.header, .cast])
         snapshot.appendItems(viewModel.datasource(for: .header), toSection: .header)
@@ -80,28 +79,30 @@ class DetailsViewController: UIViewController {
     
     func setupCollectionProvider() {
         
-        collectionDataSource = UICollectionViewDiffableDataSource(collectionView: collectionView, cellProvider: { collectionView, indexPath, movie in
+        collectionDataSource = UICollectionViewDiffableDataSource(collectionView: collectionView, cellProvider: { collectionView, indexPath, item in
             
             
             var collectionViewCell = UICollectionViewCell()
             
-            switch movie {
+            switch item {
                     
-                case .detailSection(let movie):
+                case let item as Movie:
                     
                     let detailedCell = collectionView.dequeueReusableCell(withReuseIdentifier: "detailHeaderCell", for: indexPath) as! DetailHeaderCollectionViewCell
                     
-                    detailedCell.setup(movie: movie!)
+                    detailedCell.setup(movie: item)
                     
                     collectionViewCell = detailedCell
                     
-                case .cast(let cast):
+                case let item as Cast:
                     
                     let castCell = collectionView.dequeueReusableCell(withReuseIdentifier: "castCell", for: indexPath) as! CastCollectionViewCell
                     
-                    castCell.setup(cast: cast)
+                    castCell.setup(cast: item)
                     
                     collectionViewCell = castCell
+                default:
+                    break
             }
             
             return collectionViewCell

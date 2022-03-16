@@ -27,27 +27,35 @@ final class DetailsViewModel {
     var movie: Movie?
     var cast: [Cast]?
     
+    init(movieService: MovieService, movieId: String) {
+        self.movieService = movieService
+        self.movieId = movieId
+    }
     
-    func datasource(for section: DetailSections) -> [DetailModelType] {
+    func datasource(for section: DetailSections) -> [AnyHashable] {
         
         switch section {
             case .header:
-                return [.detailSection(self.movie)]
+                
+                guard let movie = movie else {
+                    return []
+                }
+                
+                return [movie]
+                
             case .cast:
                 
                 guard let cast = cast else {
                     return []
                 }
-
-                return cast.map({ DetailModelType.cast($0) })
+                
+                return cast
         }
-        
     }
-    
-    init(movieService: MovieService, movieId: String) {
-        self.movieService = movieService
-        self.movieId = movieId
-    }
+}
+
+//MARK: - Services
+extension DetailsViewModel {
     
     func fetchMovieDetails(completion: @escaping MovieDetailCompletion) {
         
@@ -78,5 +86,4 @@ final class DetailsViewModel {
             completion(result)
         }
     }
-    
 }

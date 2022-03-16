@@ -28,6 +28,8 @@ class PosterCollectionViewCell: UICollectionViewCell {
     }
     
     func setup(movie: Movie.Diffable) {
-        posterImageView.kf.setImage(with: movie.imageURL.absoluteURL)
+        
+        guard let movieURL = movie.imageURL else { return }
+        posterImageView.kf.setImage(with: movieURL.absoluteURL)
     }
 }

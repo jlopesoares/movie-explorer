@@ -14,7 +14,7 @@ public struct MoviesResponse: Codable {
     public let results: [Movie]
 }
 
-public struct Movie: Codable, Hashable {
+public struct Movie: Codable, Hashable, ImageUseCase {
     
     public let id: Int
     public let title: String
@@ -28,20 +28,16 @@ public struct Movie: Codable, Hashable {
     public let adult: Bool
     public let runtime: Int?
    
-    public var posterURL: URL {
-        return URL(string: "https://image.tmdb.org/t/p/w500\(posterPath ?? "")")!
+    public var posterURL: URL? {
+        getImageUrl(for: posterPath, with: .small)
     }
     
-//    public var backdropURL: URL {
-//        return URL(string: "https://image.tmdb.org/t/p/original\(backdropPath ?? "")")!
-//    }
-    
-    public var backdropURL: URL {
-        return URL(string: "https://image.tmdb.org/t/p/w1280\(backdropPath ?? "")")!
+    public var backdropURL: URL? {
+        getImageUrl(for: backdropPath, with: .medium)
     }
     
-    public var backdropOriginalURL: URL {
-        return URL(string: "https://image.tmdb.org/t/p/original\(backdropPath ?? "")")!
+    public var backdropOriginalURL: URL? {
+        getImageUrl(for: backdropPath, with: .big)
     }
     
     public var voteAveragePercentText: String {
@@ -66,7 +62,7 @@ extension Movie {
         let movieIdentifier: Int
         let title: String
         let overview: String
-        let imageURL: URL
+        let imageURL: URL?
         
         init(movie: Movie) {
             movieIdentifier = movie.id
