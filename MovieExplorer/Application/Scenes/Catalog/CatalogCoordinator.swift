@@ -29,7 +29,7 @@ class CatalogCoordinator: Coordinator, DetailCoordinateFlow {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let vc = storyboard.instantiateViewController(withIdentifier: String(describing: CatalogViewController.self)) as! CatalogViewController
         
-        let viewModel = CatalogViewModel(service: MovieService())
+        let viewModel = CatalogViewModel(service: MovieService(tmdbServices: TMDBServices()))
         
         vc.catalogCoordinator = self
         vc.viewModel = viewModel

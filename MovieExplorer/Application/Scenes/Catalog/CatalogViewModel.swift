@@ -17,71 +17,68 @@ final class CatalogViewModel {
     }
 
     //MARK: - Service
-    func getMovies(completion: @escaping () -> ()) {
+    func getMovies() async {
         
-        var gotPopular = false
-        var gotNowPlaying = false
-        var gotUpcoming = false
+//        let group = DispatchGroup()
+//        group.enter()
         
-        getPopular {
-            gotPopular = true
-            
-            if gotPopular && gotNowPlaying && gotUpcoming {
-                completion()
-            }
-        }
+        await getPopular()
+        await getNowPlaying()
+        await getUpcoming()
         
-        getNowPlaying {
-            gotNowPlaying = true
-            
-            if gotPopular && gotNowPlaying && gotUpcoming {
-                completion()
-            }
-        }
         
-        getUpcoming {
-            gotUpcoming = true
-            
-            if gotPopular && gotNowPlaying && gotUpcoming {
-                completion()
-            }
-        }
+        
+        
+//        var gotPopular = false
+//        var gotNowPlaying = false
+//        var gotUpcoming = false
+//
+////        getPopular {
+////            gotPopular = true
+////
+////            if gotPopular && gotNowPlaying && gotUpcoming {
+////                completion()
+////            }
+////        }
+//
+//        getNowPlaying {
+//            gotNowPlaying = true
+//
+//            if gotPopular && gotNowPlaying && gotUpcoming {
+//                completion()
+//            }
+//        }
+//
+//        getUpcoming {
+//            gotUpcoming = true
+//
+//            if gotPopular && gotNowPlaying && gotUpcoming {
+//                completion()
+//            }
+//        }
     }
     
-    private func getPopular(completion: @escaping () -> ()) {
+    private func getPopular() async {
         
-        service.fetchMovies(with: .popular) { movie in
-            
-            let rail = Rail(name: MovieEndpoints.popular.description, movies: movie.results)
-            self.datasource.append(rail)
-            
-            completion()
-        } failure: { error in
-            print(error)
-        }
+        let popularMovies = await service.fetchPopularMovies()
+        
+        let rail = Rail(name: "Popular", movies: popularMovies)
+        self.datasource.append(rail)
     }
     
-    private func getNowPlaying(completion: @escaping () -> ()) {
+    private func getNowPlaying() async {
         
-        service.fetchMovies(with: .nowPlaying) { movie in
-            let rail = Rail(name: MovieEndpoints.nowPlaying.description, movies: movie.results)
-            self.datasource.append(rail)
-            completion()
-        } failure: { error in
-            print(error)
-        }
+        let nowPlayingMovies = await service.fetchNowPlayingMovies()
+        
+        let rail = Rail(name: "NowPlaying", movies: nowPlayingMovies)
+        self.datasource.append(rail)
     }
     
-    private func getUpcoming(completion: @escaping () -> ()) {
+    private func getUpcoming() async {
         
-        service.fetchMovies(with: .upcoming) { movie in
-            
-            let rail = Rail(name: MovieEndpoints.upcoming.description, movies: movie.results)
-            self.datasource.append(rail)
-            
-            completion()
-        } failure: { error in
-            print(error)
-        }
+        let upcomingMovies = await service.fetchUpcomingMovies()
+        
+        let rail = Rail(name: "Upcoming", movies: upcomingMovies)
+        self.datasource.append(rail)
     }
 }

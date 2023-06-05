@@ -27,9 +27,14 @@ class PosterCollectionViewCell: UICollectionViewCell {
         posterImageView.image = nil
     }
     
-    func setup(movie: Movie.Diffable) {
+    func setup(movie: Movie) {
         
-        guard let movieURL = movie.imageURL else { return }
-        posterImageView.kf.setImage(with: movieURL.absoluteURL)
+        guard
+            let poster = movie.posterURL,
+            let posterURL = movie.getImageUrl(for: poster.absoluteString, with: .small)
+        else {
+            return
+        }
+        posterImageView.kf.setImage(with: posterURL)
     }
 }

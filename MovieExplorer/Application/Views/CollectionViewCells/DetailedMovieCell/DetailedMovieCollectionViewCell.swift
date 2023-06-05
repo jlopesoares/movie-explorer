@@ -21,15 +21,20 @@ class DetailedMovieCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var sinopseLabel: UILabel!
     
-    func setup(movie: Movie.Diffable) {
+    func setup(movie: Movie) {
         
         genderLabel.text = "Drama".uppercased()
         titleLabel.text = movie.title
         sinopseLabel.text = movie.overview
         
-        guard let movieURL = movie.imageURL else { return }
+        guard
+            let backdrop = movie.backdropURL,
+            let backdropURL = movie.getImageUrl(for: backdrop.absoluteString, with: .small)
+        else {
+            return
+        }
         
-        movieBackgroundImageView.kf.setImage(with: movieURL.absoluteURL)
+        movieBackgroundImageView.kf.setImage(with: backdropURL)
     }
 
 }

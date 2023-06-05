@@ -26,7 +26,7 @@ class DetailsCoordinator: Coordinator {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let vc = storyboard.instantiateViewController(withIdentifier: String(describing: DetailsViewController.self)) as! DetailsViewController
         
-        let viewModel = DetailsViewModel(movieService: MovieService(), movieId: movieIdentifier)
+        let viewModel = DetailsViewModel(movieService: MovieService(tmdbServices: TMDBServices()), movieId: movieIdentifier)
         vc.viewModel = viewModel
         
         navigationController.pushViewController(vc, animated: true)

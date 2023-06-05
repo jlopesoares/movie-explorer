@@ -59,31 +59,32 @@ extension DetailsViewModel {
     
     func fetchMovieDetails(completion: @escaping MovieDetailCompletion) {
         
-        movieService.getMovieDetail(for: movieId) { result in
-            switch result {
-                case .success(let movie):
-                    self.movie = movie
-                    
-                case .failure(_):
-                    break
-            }
-            
-            completion(result)
-        }
+//        movieService.getMovieDetail(for: movieId) { result in
+//            switch result {
+//                case .success(let movie):
+//                    self.movie = movie
+//
+//                case
+//        .failure(_):
+//                    break
+//            }
+//
+//            completion(result)
+//        }
     }
     
     func fetchMovieCast(completion: @escaping MovieCastCompletion) {
         
-        movieService.getMovieCast(for: movieId) { result in
-            switch result {
-                case .success(let cast):
-                    self.cast = cast
-                    
-                case .failure(_):
-                    break
-            }
-            
-            completion(result)
-        }
+//        movieService.getMovieCast(for: movieId) { result in
+//            switch result {
+//                case .success(let cast):
+//                    self.cast = cast
+//
+//                case .failure(_):
+//                    break
+//            }
+//
+//            completion(result)
+//        }
     }
 }

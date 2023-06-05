@@ -23,27 +23,27 @@ class CatalogViewController: UIViewController, UICollectionViewDelegate {
         }
     }
     
-    var collectionDataSource: UICollectionViewDiffableDataSource<Rail, Movie.Diffable>!
+    var collectionDataSource: UICollectionViewDiffableDataSource<Rail, Movie>!
    
     //Cocoa
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupCollectionProvider()
       
-        viewModel.getMovies { [weak self] in
+        
+        Task { [weak self] in
+            await viewModel.getMovies()
             self?.updateCollectionView()
         }
     }
     
     func updateCollectionView() {
         
-        var snapshot = NSDiffableDataSourceSnapshot<Rail, Movie.Diffable>()
+        var snapshot = NSDiffableDataSourceSnapshot<Rail, Movie>()
         snapshot.appendSections(viewModel.datasource)
 
-        
         for rail in viewModel.datasource {
-            snapshot.appendItems(rail.movies.map(Movie.Diffable.init), toSection: rail)
+            snapshot.appendItems(rail.movies, toSection: rail)
         }
 
         collectionDataSource.apply(snapshot, animatingDifferences: true, completion: nil)
