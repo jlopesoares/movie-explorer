@@ -12,6 +12,8 @@ extension CatalogViewController {
     
     func registerCells() {
         
+        collectionView.register(MovieCollectionViewCell.self, forCellWithReuseIdentifier: String(describing: MovieCollectionViewCell.self))
+        
         collectionView.register(
             UINib(nibName: CatalogControllerConstants.posterCollectionCell, bundle: .main),
             forCellWithReuseIdentifier: CatalogControllerConstants.posterCollectionCell
@@ -49,9 +51,9 @@ extension CatalogViewController {
                 case 0:
                     return self.nowPopularSection()
                 case 1:
-                    return self.detailedLayoutSection()
+                    return self.posterSection()
                 default:
-                    return self.detailedLayoutSection()
+                    return self.posterSection()
             }
         }
     }
@@ -66,47 +68,43 @@ extension CatalogViewController {
         
         //2
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.98),
-                                               heightDimension: .absolute(420.0))
+                                               heightDimension: .absolute(230.0))
         
         //3
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
 
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .groupPaging
-        
-
-        if #available(iOS 14.0, *) {
-            section.contentInsetsReference = .layoutMargins
-        }
-        
+        section.contentInsets = NSDirectionalEdgeInsets(top: .zero, leading: 24, bottom: .zero, trailing: .zero)
+        section.contentInsetsReference = .layoutMargins
         section.interGroupSpacing = .zero
         return section
     }
     
-    func detailedLayoutSection() -> NSCollectionLayoutSection {
+    func posterSection() -> NSCollectionLayoutSection {
         
         //1
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .absolute(250))
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                              heightDimension: .fractionalHeight(1.0))
         
         
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 8)
+//        item.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 8)
         
         //2
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.3), heightDimension: .absolute(250))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(241),
+                                               heightDimension: .absolute(237))
         
         //3
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
+                                                       subitems: [item])
+        group.interItemSpacing = .fixed(24)
 
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
-        
-
-        if #available(iOS 14.0, *) {
-            section.contentInsetsReference = .layoutMargins
-        }
-        
-        section.interGroupSpacing = .zero
+        section.contentInsets = NSDirectionalEdgeInsets(top: .zero, leading: 24, bottom: .zero, trailing: 32.0)
+        section.contentInsetsReference = .layoutMargins
+        section.interGroupSpacing = 24
         section.boundarySupplementaryItems = [detailedSectionHeader()]
       
         return section

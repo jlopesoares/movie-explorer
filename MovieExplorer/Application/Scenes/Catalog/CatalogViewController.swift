@@ -28,13 +28,18 @@ class CatalogViewController: UIViewController, UICollectionViewDelegate {
     //Cocoa
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupUI()
         setupCollectionProvider()
       
-        
         Task { [weak self] in
-            await viewModel.getMovies()
+            await self?.viewModel.getMovies()
             self?.updateCollectionView()
         }
+    }
+    
+    func setupUI() {
+        collectionView.backgroundColor = UIColor(named: "mainBackgroundColor")
     }
     
     func updateCollectionView() {
@@ -57,23 +62,18 @@ extension CatalogViewController {
         
         collectionDataSource = UICollectionViewDiffableDataSource(collectionView: collectionView, cellProvider: { collectionView, indexPath, movie in
             
-            var collectionViewCell: UICollectionViewCell
-            
             switch indexPath.section {
-                case 1:
-                    let detailedCell = collectionView.dequeueReusableCell(withReuseIdentifier: CatalogControllerConstants.detailedCollectionCell, for: indexPath) as! DetailedMovieCollectionViewCell
-                    detailedCell.setup(movie: movie)
-                    
-                    collectionViewCell = detailedCell
-                default:
-                    
-                    let simpleMovieCell = collectionView.dequeueReusableCell(withReuseIdentifier: CatalogControllerConstants.posterCollectionCell, for: indexPath) as! PosterCollectionViewCell
-                    simpleMovieCell.setup(movie: movie)
-                    
-                    collectionViewCell = simpleMovieCell
+            case 0:
+                let simpleMovieCell = collectionView.dequeueReusableCell(withReuseIdentifier: CatalogControllerConstants.posterCollectionCell, for: indexPath) as! PosterCollectionViewCell
+                simpleMovieCell.setup(movie: movie)
+                
+                return simpleMovieCell
+            default:
+                let movieCell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: MovieCollectionViewCell.self), for: indexPath) as! MovieCollectionViewCell
+                movieCell.config(movie: movie)
+                
+                return movieCell
             }
-            
-            return collectionViewCell
         })
         
         collectionDataSource.supplementaryViewProvider = { (collectionView: UICollectionView, kind: String, indexPath: IndexPath) -> UICollectionReusableView in
