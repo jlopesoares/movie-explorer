@@ -16,6 +16,7 @@ protocol MovieServiceProtocol {
     func fetchPopularMovies() async -> [Movie]
     func fetchUpcomingMovies() async -> [Movie]
     func fetchNowPlayingMovies() async -> [Movie]
+    func fetchMovieProviders() async -> [MovieProvider]
 }
 
 class MovieService: MovieServiceProtocol {
@@ -48,6 +49,19 @@ class MovieService: MovieServiceProtocol {
         } catch {
             return []
         }
+    }
+    
+    
+    func fetchMovieProviders() async -> [MovieProvider] {
+        do {
+            return try await tmdbServices.tmdb.watchProviders.movieWatchProviders().map({.init(watchProvider: $0)})
+        } catch {
+            return []
+        }
+    }
+    
+    func details(id: Int) async throws -> Movie {
+        try await Movie(movie: tmdbServices.tmdb.movies.details(forMovie: id))
     }
 }
 

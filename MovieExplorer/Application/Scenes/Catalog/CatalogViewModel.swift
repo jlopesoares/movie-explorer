@@ -15,47 +15,16 @@ final class CatalogViewModel {
     init(service: MovieService) {
         self.service = service
     }
+}
 
-    //MARK: - Service
+//MARK: - Service
+extension CatalogViewModel {
+    
     func getMovies() async {
-        
-//        let group = DispatchGroup()
-//        group.enter()
         
         await getPopular()
         await getNowPlaying()
         await getUpcoming()
-        
-        
-        
-        
-//        var gotPopular = false
-//        var gotNowPlaying = false
-//        var gotUpcoming = false
-//
-////        getPopular {
-////            gotPopular = true
-////
-////            if gotPopular && gotNowPlaying && gotUpcoming {
-////                completion()
-////            }
-////        }
-//
-//        getNowPlaying {
-//            gotNowPlaying = true
-//
-//            if gotPopular && gotNowPlaying && gotUpcoming {
-//                completion()
-//            }
-//        }
-//
-//        getUpcoming {
-//            gotUpcoming = true
-//
-//            if gotPopular && gotNowPlaying && gotUpcoming {
-//                completion()
-//            }
-//        }
     }
     
     private func getPopular() async {
@@ -77,8 +46,14 @@ final class CatalogViewModel {
     private func getUpcoming() async {
         
         let upcomingMovies = await service.fetchUpcomingMovies()
-        
+
         let rail = Rail(name: "Upcoming", movies: upcomingMovies)
         self.datasource.append(rail)
+    }
+    
+    private func getMovieProviders() async {
+        
+        let movieProviders = await service.fetchMovieProviders().sorted(by: { $0.id < $1.id })
+        print(movieProviders)
     }
 }

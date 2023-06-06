@@ -11,7 +11,7 @@ class CatalogViewController: UIViewController, UICollectionViewDelegate {
 
     //Coordinator
     weak var catalogCoordinator: DetailCoordinateFlow!
-    
+
     var viewModel: CatalogViewModel!
     
     //Outlets
@@ -95,7 +95,7 @@ extension CatalogViewController {
 extension CatalogViewController {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        catalogCoordinator.coordinateToDetail(with: "\(viewModel.datasource[indexPath.section].movies[indexPath.row].id)")
+        catalogCoordinator.coordinateToDetail(with:viewModel.datasource[indexPath.section].movies[indexPath.row].id)
     }
 }
 

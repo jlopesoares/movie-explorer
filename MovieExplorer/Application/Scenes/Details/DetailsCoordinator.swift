@@ -13,12 +13,12 @@ class DetailsCoordinator: Coordinator {
     
     var navigationController: UINavigationController
     
-    var movieIdentifier: String
+    var movieID: Int
     
-    init(navigationController: UINavigationController, movieIdentifier: String) {
+    init(navigationController: UINavigationController, movieID: Int) {
         
         self.navigationController = navigationController
-        self.movieIdentifier = movieIdentifier
+        self.movieID = movieID
     }
     
     func start() {
@@ -26,7 +26,8 @@ class DetailsCoordinator: Coordinator {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let vc = storyboard.instantiateViewController(withIdentifier: String(describing: DetailsViewController.self)) as! DetailsViewController
         
-        let viewModel = DetailsViewModel(movieService: MovieService(tmdbServices: TMDBServices()), movieId: movieIdentifier)
+        let viewModel = DetailsViewModel(movieService: MovieService(tmdbServices: TMDBServices()),
+                                         movieID: movieID)
         vc.viewModel = viewModel
         
         navigationController.pushViewController(vc, animated: true)

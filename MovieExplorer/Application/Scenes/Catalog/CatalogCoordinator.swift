@@ -10,7 +10,7 @@ import UIKit
 
 protocol DetailCoordinateFlow: AnyObject {
     
-    func coordinateToDetail(with movieIdentifier: String)
+    func coordinateToDetail(with movieID: Int)
 }
 
 class CatalogCoordinator: Coordinator, DetailCoordinateFlow {
@@ -39,9 +39,9 @@ class CatalogCoordinator: Coordinator, DetailCoordinateFlow {
     
     
     //MARK: - Coordinates
-    func coordinateToDetail(with movieIdentifier: String) {
+    func coordinateToDetail(with movieID: Int) {
         
-        let childCoordinator = DetailsCoordinator(navigationController: navigationController, movieIdentifier: movieIdentifier)
+        let childCoordinator = DetailsCoordinator(navigationController: navigationController, movieID: movieID)
         
         childCoordinators.append(childCoordinator)
         

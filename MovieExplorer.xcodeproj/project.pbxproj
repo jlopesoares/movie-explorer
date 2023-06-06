@@ -13,6 +13,7 @@
 		712E232627C457E100F38473 /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712E232527C457E100F38473 /* DetailsViewModel.swift */; };
 		71410BDC2A29116000F423C9 /* TMDb in Frameworks */ = {isa = PBXBuildFile; productRef = 71410BDB2A29116000F423C9 /* TMDb */; };
 		71410BDE2A2911B400F423C9 /* TMDBServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71410BDD2A2911B400F423C9 /* TMDBServices.swift */; };
+		71410BE02A2E472E00F423C9 /* MovieProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71410BDF2A2E472E00F423C9 /* MovieProvider.swift */; };
 		7189F9E627BAF22200EEA23E /* MovieServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7189F9E527BAF22200EEA23E /* MovieServices.swift */; };
 		7189F9E927BB053B00EEA23E /* Rail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7189F9E827BB053B00EEA23E /* Rail.swift */; };
 		7189F9EC27BB09D400EEA23E /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 7189F9EB27BB09D400EEA23E /* Kingfisher */; };
@@ -44,6 +45,7 @@
 		7126F28727C0170C00625513 /* CatalogViewController+UIFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CatalogViewController+UIFactory.swift"; sourceTree = "<group>"; };
 		712E232527C457E100F38473 /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
 		71410BDD2A2911B400F423C9 /* TMDBServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBServices.swift; sourceTree = "<group>"; };
+		71410BDF2A2E472E00F423C9 /* MovieProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieProvider.swift; sourceTree = "<group>"; };
 		7189F9E527BAF22200EEA23E /* MovieServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieServices.swift; sourceTree = "<group>"; };
 		7189F9E827BB053B00EEA23E /* Rail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rail.swift; sourceTree = "<group>"; };
 		7192B4F827B472CB00878171 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				7192B51E27B49C8C00878171 /* Movie.swift */,
 				7189F9E827BB053B00EEA23E /* Rail.swift */,
 				71FBD45427C703FC000EE6C7 /* Cast.swift */,
+				71410BDF2A2E472E00F423C9 /* MovieProvider.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -353,6 +356,7 @@
 				712E232627C457E100F38473 /* DetailsViewModel.swift in Sources */,
 				7192B50C27B47CD300878171 /* CatalogViewController.swift in Sources */,
 				7189F9E627BAF22200EEA23E /* MovieServices.swift in Sources */,
+				71410BE02A2E472E00F423C9 /* MovieProvider.swift in Sources */,
 				71D0026B27B1FBBE00451BD0 /* AppDelegate.swift in Sources */,
 				7192B4F927B472CB00878171 /* Coordinator.swift in Sources */,
 				71410BDE2A2911B400F423C9 /* TMDBServices.swift in Sources */,
