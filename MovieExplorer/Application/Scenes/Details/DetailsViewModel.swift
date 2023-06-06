@@ -22,14 +22,14 @@ enum DetailModelType: Hashable {
 final class DetailsViewModel {
     
     let movieService: MovieService!
-    let movieId: String!
+    let movieID: Int!
     
     var movie: Movie?
     var cast: [Cast]?
     
-    init(movieService: MovieService, movieId: String) {
+    init(movieService: MovieService, movieID: Int) {
         self.movieService = movieService
-        self.movieId = movieId
+        self.movieID = movieID
     }
     
     func datasource(for section: DetailSections) -> [AnyHashable] {
@@ -57,33 +57,27 @@ final class DetailsViewModel {
 //MARK: - Services
 extension DetailsViewModel {
     
-    func fetchMovieDetails(completion: @escaping MovieDetailCompletion) {
-        
-        movieService.getMovieDetail(for: movieId) { result in
-            switch result {
-                case .success(let movie):
-                    self.movie = movie
-                    
-                case .failure(_):
-                    break
-            }
-            
-            completion(result)
+    func fetchMovieDetails() async -> Result<Void, Error> {
+        do {
+            self.movie = try await movieService.details(id: movieID)
+            return .success(())
+        } catch let error {
+            return .failure(error)
         }
     }
     
     func fetchMovieCast(completion: @escaping MovieCastCompletion) {
         
-        movieService.getMovieCast(for: movieId) { result in
-            switch result {
-                case .success(let cast):
-                    self.cast = cast
-                    
-                case .failure(_):
-                    break
-            }
-            
-            completion(result)
-        }
+//        movieService.getMovieCast(for: movieId) { result in
+//            switch result {
+//                case .success(let cast):
+//                    self.cast = cast
+//
+//                case .failure(_):
+//                    break
+//            }
+//
+//            completion(result)
+//        }
     }
 }

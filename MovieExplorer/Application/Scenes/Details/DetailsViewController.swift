@@ -29,7 +29,10 @@ class DetailsViewController: UIViewController {
         super.viewDidLoad()
         
         setupCollectionProvider()
-        getMovieDetail()
+        
+        Task {
+            await getMovieDetail()
+        }
         
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
@@ -38,15 +41,13 @@ class DetailsViewController: UIViewController {
         
     }
     
-    func getMovieDetail() {
+    func getMovieDetail() async {
 
-        viewModel.fetchMovieDetails { result in
-            switch result {
-                case .success(_):
-                    self.updateCollectionView()
-                case .failure(_):
-                    break
-            }
+        switch await viewModel.fetchMovieDetails() {
+        case .success:
+            self.updateCollectionView()
+        case .failure(let error):
+            break
         }
     }
     
