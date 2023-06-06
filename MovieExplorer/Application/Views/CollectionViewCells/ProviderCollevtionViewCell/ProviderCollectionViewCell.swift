@@ -1,5 +1,5 @@
 //
-//  MovieCollectionViewCell.swift
+//  ProviderCollectionViewCell.swift
 //  MovieExplorer
 //
 //  Created by João Pedro on 06/06/2023.
@@ -8,7 +8,7 @@
 import UIKit
 import SwiftUI
 
-class MovieCollectionViewCell: UICollectionViewCell {
+class ProviderCollectionViewCell: UICollectionViewCell {
     
     var movieCellView: UIView?
     
@@ -17,13 +17,13 @@ class MovieCollectionViewCell: UICollectionViewCell {
         
         guard let movieCellView else {
             
-            let movieCellViewHostingController = UIHostingController(rootView: MovieCellView())
-
+            let movieCellViewHostingController = UIHostingController(rootView: ProviderCellView())
+            
             let movieCellView = movieCellViewHostingController.view
-            movieCellView?.backgroundColor = .clear
             contentView.addSubview(movieCellView!)
+            movieCellView?.backgroundColor = .clear
             movieCellView?.constraintsToFillSuperview(contentView)
-
+            
             self.movieCellView = movieCellView
             
             return
@@ -34,9 +34,13 @@ class MovieCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func config(movie: Movie) {
+    func config(movie: MovieProvider) {
         
+        guard let movieCellView else {
+            return
+        }
     
+        
         print("do some config here")
         
     }

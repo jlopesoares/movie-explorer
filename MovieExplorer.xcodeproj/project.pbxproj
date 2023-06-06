@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		712403B72A2FD1CB00495A4B /* ProviderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712403B62A2FD1CB00495A4B /* ProviderCollectionViewCell.swift */; };
+		712403B92A2FD1D700495A4B /* ProviderCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712403B82A2FD1D700495A4B /* ProviderCellView.swift */; };
+		712403BB2A2FD7D100495A4B /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712403BA2A2FD7D100495A4B /* UIView+Extensions.swift */; };
 		7126F28527C00F8800625513 /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7126F28327C00F8800625513 /* HeaderCollectionReusableView.swift */; };
 		7126F28627C00F8800625513 /* HeaderCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7126F28427C00F8800625513 /* HeaderCollectionReusableView.xib */; };
 		7126F28827C0170C00625513 /* CatalogViewController+UIFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7126F28727C0170C00625513 /* CatalogViewController+UIFactory.swift */; };
@@ -42,6 +45,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		712403B62A2FD1CB00495A4B /* ProviderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderCollectionViewCell.swift; sourceTree = "<group>"; };
+		712403B82A2FD1D700495A4B /* ProviderCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderCellView.swift; sourceTree = "<group>"; };
+		712403BA2A2FD7D100495A4B /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		7126F28327C00F8800625513 /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		7126F28427C00F8800625513 /* HeaderCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderCollectionReusableView.xib; sourceTree = "<group>"; };
 		7126F28727C0170C00625513 /* CatalogViewController+UIFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CatalogViewController+UIFactory.swift"; sourceTree = "<group>"; };
@@ -89,6 +95,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		712403B52A2FD1B600495A4B /* ProviderCollevtionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				712403B62A2FD1CB00495A4B /* ProviderCollectionViewCell.swift */,
+				712403B82A2FD1D700495A4B /* ProviderCellView.swift */,
+			);
+			path = ProviderCollevtionViewCell;
+			sourceTree = "<group>";
+		};
 		7126F28227C00F4500625513 /* CatalogHeaders */ = {
 			isa = PBXGroup;
 			children = (
@@ -189,6 +204,7 @@
 		7192B51727B4965F00878171 /* CollectionViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				712403B52A2FD1B600495A4B /* ProviderCollevtionViewCell */,
 				71410BE62A2F9C4B00F423C9 /* MovieCollectionViewCell */,
 				71FBD45627C709CE000EE6C7 /* CastCell */,
 				71FBD45127C5B8EF000EE6C7 /* DetailHeaderCell */,
@@ -259,6 +275,7 @@
 			isa = PBXGroup;
 			children = (
 				71EF9CFC27E293FA00520F02 /* ImageUseCase.swift */,
+				712403BA2A2FD7D100495A4B /* UIView+Extensions.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -362,6 +379,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7126F28827C0170C00625513 /* CatalogViewController+UIFactory.swift in Sources */,
+				712403B92A2FD1D700495A4B /* ProviderCellView.swift in Sources */,
 				71410BEA2A2F9C7300F423C9 /* MovieCellView.swift in Sources */,
 				71FBD45327C5B92A000EE6C7 /* DetailHeaderCollectionViewCell.swift in Sources */,
 				7126F28527C00F8800625513 /* HeaderCollectionReusableView.swift in Sources */,
@@ -372,6 +390,7 @@
 				7192B50C27B47CD300878171 /* CatalogViewController.swift in Sources */,
 				7189F9E627BAF22200EEA23E /* MovieServices.swift in Sources */,
 				71410BE02A2E472E00F423C9 /* MovieProvider.swift in Sources */,
+				712403BB2A2FD7D100495A4B /* UIView+Extensions.swift in Sources */,
 				71410BE82A2F9C6300F423C9 /* MovieCollectionViewCell.swift in Sources */,
 				71D0026B27B1FBBE00451BD0 /* AppDelegate.swift in Sources */,
 				7192B4F927B472CB00878171 /* Coordinator.swift in Sources */,
@@ -383,6 +402,7 @@
 				7192B50327B4775A00878171 /* CatalogViewModel.swift in Sources */,
 				7192B50827B47B6700878171 /* DetailsCoordinator.swift in Sources */,
 				7189F9E927BB053B00EEA23E /* Rail.swift in Sources */,
+				712403B72A2FD1CB00495A4B /* ProviderCollectionViewCell.swift in Sources */,
 				7192B50527B4794A00878171 /* CatalogCoordinator.swift in Sources */,
 				7192B4FB27B472F500878171 /* AppCoordinator.swift in Sources */,
 			);

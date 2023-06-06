@@ -68,6 +68,12 @@ extension CatalogViewController {
                 simpleMovieCell.setup(movie: movie)
                 
                 return simpleMovieCell
+                
+            case 1:
+                let movieProviderCell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ProviderCollectionViewCell.self), for: indexPath) as! ProviderCollectionViewCell
+                
+                return movieProviderCell
+                
             default:
                 let movieCell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: MovieCollectionViewCell.self), for: indexPath) as! MovieCollectionViewCell
                 movieCell.config(movie: movie)
