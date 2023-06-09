@@ -23,7 +23,7 @@ class CatalogViewController: UIViewController, UICollectionViewDelegate {
         }
     }
     
-    var collectionDataSource: UICollectionViewDiffableDataSource<Rail, Movie>!
+    var collectionDataSource: UICollectionViewDiffableDataSource<Rail, AnyHashable>!
    
     //Cocoa
     override func viewDidLoad() {
@@ -44,11 +44,11 @@ class CatalogViewController: UIViewController, UICollectionViewDelegate {
     
     func updateCollectionView() {
         
-        var snapshot = NSDiffableDataSourceSnapshot<Rail, Movie>()
+        var snapshot = NSDiffableDataSourceSnapshot<Rail, AnyHashable>()
         snapshot.appendSections(viewModel.datasource)
 
         for rail in viewModel.datasource {
-            snapshot.appendItems(rail.movies, toSection: rail)
+            snapshot.appendItems(rail.type.values, toSection: rail)
         }
 
         collectionDataSource.apply(snapshot, animatingDifferences: true, completion: nil)
@@ -65,18 +65,33 @@ extension CatalogViewController {
             switch indexPath.section {
             case 0:
                 let simpleMovieCell = collectionView.dequeueReusableCell(withReuseIdentifier: CatalogControllerConstants.posterCollectionCell, for: indexPath) as! PosterCollectionViewCell
-                simpleMovieCell.setup(movie: movie)
+//                simpleMovieCell.setup(movie: movie)
+                
+                if let movie = movie as? Movie {
+                    print(movie)
+                    simpleMovieCell.setup(movie: movie)
+                }
+                
                 
                 return simpleMovieCell
                 
             case 1:
                 let movieProviderCell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ProviderCollectionViewCell.self), for: indexPath) as! ProviderCollectionViewCell
                 
+                if let provider = movie as? MovieProvider {
+                    print("\(indexPath.row) - \(provider)")
+                    movieProviderCell.embed(in: self, with: provider)
+                }
+                
                 return movieProviderCell
                 
             default:
                 let movieCell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: MovieCollectionViewCell.self), for: indexPath) as! MovieCollectionViewCell
-                movieCell.config(movie: movie)
+  
+                if let movie = movie as? Movie {
+                    print(movie)
+                    movieCell.embed(in: self, with: movie)
+                }
                 
                 return movieCell
             }
@@ -101,7 +116,16 @@ extension CatalogViewController {
 extension CatalogViewController {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        catalogCoordinator.coordinateToDetail(with:viewModel.datasource[indexPath.section].movies[indexPath.row].id)
+        
+        
+        switch viewModel.datasource[indexPath.section].type {
+        case .providers(let providers):
+            break
+        case .movies(let movies):
+            catalogCoordinator.coordinateToDetail(with: movies[indexPath.row].id)
+        }
+        
+//        catalogCoordinator.coordinateToDetail(with:viewModel.datasource[indexPath.section].type.values[indexPath.row])
     }
 }
 

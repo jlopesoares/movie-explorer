@@ -6,21 +6,26 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct MovieCellView: View {
+    
+    var movie: Movie?
+    
     var body: some View {
         ZStack(alignment: .top) {
             Color.white
             
             VStack(spacing: 8) {
-                Image("free2")
+                
+                KFImage(movie?.getBackdropURL)
                     .centerCropped()
-                    .cornerRadius(25)
+                    .clipShape(RoundedRectangle(cornerRadius: 25))
                     .padding(.horizontal, 8)
                     .padding(.top, 5)
                     .frame(height: 155, alignment: .center)
                     
-                Text("Ice Age")
+                Text(movie?.title ?? "")
                     .font(.system(size: 15, weight: .semibold))
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.horizontal, 8)
@@ -48,14 +53,13 @@ struct MovieCellView: View {
     }
 }
 
-extension Image {
+extension KFImage {
     func centerCropped() -> some View {
         GeometryReader { geo in
             self
             .resizable()
             .scaledToFill()
             .frame(width: geo.size.width, height: geo.size.height)
-            .clipped()
         }
     }
 }

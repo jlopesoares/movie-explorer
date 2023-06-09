@@ -30,7 +30,7 @@ class PosterCollectionViewCell: UICollectionViewCell {
     func setup(movie: Movie) {
         
         guard
-            let poster = movie.posterURL,
+            let poster = movie.backdropURL,
             let posterURL = movie.getImageUrl(for: poster.absoluteString, with: .small)
         else {
             return

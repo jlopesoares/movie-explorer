@@ -10,38 +10,41 @@ import SwiftUI
 
 class ProviderCollectionViewCell: UICollectionViewCell {
     
-    var movieCellView: UIView?
+    var host: UIHostingController<ProviderCellView>?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        guard let movieCellView else {
-            
-            let movieCellViewHostingController = UIHostingController(rootView: ProviderCellView())
-            
-            let movieCellView = movieCellViewHostingController.view
-            contentView.addSubview(movieCellView!)
-            movieCellView?.backgroundColor = .clear
-            movieCellView?.constraintsToFillSuperview(contentView)
-            
-            self.movieCellView = movieCellView
-            
-            return
-        }
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func config(movie: MovieProvider) {
+    //MARK: - HostingController
+    func embed(in parent: UIViewController, with provider: MovieProvider) {
         
-        guard let movieCellView else {
-            return
+        if let host = host {
+            host.rootView = ProviderCellView(movieProvider: provider)
+            host.view.layoutIfNeeded()
+            
+        } else {
+            
+            let host = UIHostingController(rootView: ProviderCellView(movieProvider: provider))
+            parent.addChild(host)
+            host.didMove(toParent: parent)
+            host.view.backgroundColor = .clear
+            contentView.addSubview(host.view!)
+            host.view.constraintsToFillSuperview(contentView)
+            self.host = host
         }
+    }
     
-        
-        print("do some config here")
-        
+    deinit {
+        host?.willMove(toParent: nil)
+        host?.view?.removeFromSuperview()
+        host?.removeFromParent()
+        print("Cell has been cleaned")
     }
 }
+
+

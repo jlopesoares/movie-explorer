@@ -35,4 +35,8 @@ struct Movie: Codable, Hashable, ImageUseCase {
         releaseDate = movie.releaseDate
         voteAverage = movie.voteAverage
     }
+    
+    var getBackdropURL: URL? {
+        getImageUrl(for: backdropURL?.absoluteString, with: .small)
+    }
 }

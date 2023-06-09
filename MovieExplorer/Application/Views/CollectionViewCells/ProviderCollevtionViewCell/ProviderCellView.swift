@@ -6,14 +6,19 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ProviderCellView: View {
+    
+    var movieProvider: MovieProvider?
+    
     var body: some View {
         ZStack {
             Color.white
-            Image("disney")
+            KFImage(movieProvider?.logoURL)
                 .centerCropped()
                 .scaledToFit()
+                .padding(8)
         }
         .cornerRadius(10)
     }
