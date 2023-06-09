@@ -31,18 +31,19 @@ struct MovieCellView: View {
                     .padding(.horizontal, 8)
                 
                 HStack(alignment: .center) {
-                    Text("1h57m")
-                        .font(.system(size: 12, weight: .medium))
-                        .padding(.leading, 8)
-                        .foregroundColor(.black.opacity(0.7))
+//                    Text("1h57m")
+//                        .font(.system(size: 12, weight: .medium))
+//                        .padding(.leading, 8)
+//                        .foregroundColor(.black.opacity(0.7))
                     
+                    Spacer()
                     Spacer()
                     Image("playIcon")
                         .resizable()
                         .frame(width: 37, height: 37)
                     Spacer()
                     
-                    MovieRatingView()
+                    MovieRatingView(movie: movie)
                         .padding(.trailing, 8)
                 }
                 .padding(.bottom, 6)
@@ -65,9 +66,12 @@ extension KFImage {
 }
 
 private struct MovieRatingView: View {
+    
+    var movie: Movie?
+    
     var body: some View {
         HStack() {
-            Text("8.9")
+            Text(movie?.voteAverage ?? "")
                 .font(.system(size: 12, weight: .semibold))
             Image("starIcon")
                 .resizable()

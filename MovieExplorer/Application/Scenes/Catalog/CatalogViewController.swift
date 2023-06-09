@@ -8,13 +8,12 @@
 import UIKit
 
 class CatalogViewController: UIViewController, UICollectionViewDelegate {
-
-    //Coordinator
+    
+    // Vars
     weak var catalogCoordinator: DetailCoordinateFlow!
-
     var viewModel: CatalogViewModel!
     
-    //Outlets
+    // Outlets
     @IBOutlet weak var collectionView: UICollectionView! {
         didSet {
             registerCells()
@@ -25,13 +24,17 @@ class CatalogViewController: UIViewController, UICollectionViewDelegate {
     
     var collectionDataSource: UICollectionViewDiffableDataSource<Rail, AnyHashable>!
    
-    //Cocoa
+    // Cocoa
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupUI()
         setupCollectionProvider()
-      
+        getCatalogData()
+        
+    }
+    
+    func getCatalogData() {
         Task { [weak self] in
             await self?.viewModel.getMovies()
             self?.updateCollectionView()
@@ -55,82 +58,25 @@ class CatalogViewController: UIViewController, UICollectionViewDelegate {
     }
 }
 
-//MARK: - CollectionDataSource
-extension CatalogViewController {
-    
-    func setupCollectionProvider() {
-        
-        collectionDataSource = UICollectionViewDiffableDataSource(collectionView: collectionView, cellProvider: { collectionView, indexPath, movie in
-            
-            switch indexPath.section {
-            case 0:
-                let simpleMovieCell = collectionView.dequeueReusableCell(withReuseIdentifier: CatalogControllerConstants.posterCollectionCell, for: indexPath) as! PosterCollectionViewCell
-//                simpleMovieCell.setup(movie: movie)
-                
-                if let movie = movie as? Movie {
-                    print(movie)
-                    simpleMovieCell.setup(movie: movie)
-                }
-                
-                
-                return simpleMovieCell
-                
-            case 1:
-                let movieProviderCell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ProviderCollectionViewCell.self), for: indexPath) as! ProviderCollectionViewCell
-                
-                if let provider = movie as? MovieProvider {
-                    print("\(indexPath.row) - \(provider)")
-                    movieProviderCell.embed(in: self, with: provider)
-                }
-                
-                return movieProviderCell
-                
-            default:
-                let movieCell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: MovieCollectionViewCell.self), for: indexPath) as! MovieCollectionViewCell
-  
-                if let movie = movie as? Movie {
-                    print(movie)
-                    movieCell.embed(in: self, with: movie)
-                }
-                
-                return movieCell
-            }
-        })
-        
-        collectionDataSource.supplementaryViewProvider = { (collectionView: UICollectionView, kind: String, indexPath: IndexPath) -> UICollectionReusableView in
-        
-            if kind == UICollectionView.elementKindSectionHeader {
-                
-                let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerCollectionReausableView", for: indexPath) as! HeaderCollectionReusableView
-                header.titleLabel.text = self.viewModel.datasource[indexPath.section].name
-                header.headerButton.setTitle("Ver todos", for: .normal)
-                return header
-            }
-            
-            return UICollectionReusableView()
-        }
-    }
-}
-
 //MARK: - Collection Delegation
 extension CatalogViewController {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        let item = viewModel.item(for: indexPath)
         
-        switch viewModel.datasource[indexPath.section].type {
-        case .providers(let providers):
+        switch item {
+        case let item as Movie:
+            catalogCoordinator.coordinateToDetail(with: item.id)
+        case let item as MovieProvider:
             break
-        case .movies(let movies):
-            catalogCoordinator.coordinateToDetail(with: movies[indexPath.row].id)
+        default:
+            break
         }
-        
-//        catalogCoordinator.coordinateToDetail(with:viewModel.datasource[indexPath.section].type.values[indexPath.row])
     }
 }
 
 //MARK: - Collection Datasource
 internal enum CatalogControllerConstants {
     static let posterCollectionCell = String(describing: PosterCollectionViewCell.self)
-    static let detailedCollectionCell = String(describing: DetailedMovieCollectionViewCell.self)
 }

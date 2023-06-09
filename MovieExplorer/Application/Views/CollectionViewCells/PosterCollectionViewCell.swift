@@ -16,11 +16,6 @@ class PosterCollectionViewCell: UICollectionViewCell {
             posterImageView.layer.masksToBounds = true
         }
     }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
 
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -30,11 +25,11 @@ class PosterCollectionViewCell: UICollectionViewCell {
     func setup(movie: Movie) {
         
         guard
-            let poster = movie.backdropURL,
-            let posterURL = movie.getImageUrl(for: poster.absoluteString, with: .small)
+            let backdrop = movie.backdropURL,
+            let backdropURL = movie.getImageUrl(for: backdrop.absoluteString, with: .small)
         else {
             return
         }
-        posterImageView.kf.setImage(with: posterURL)
+        posterImageView.kf.setImage(with: backdropURL)
     }
 }

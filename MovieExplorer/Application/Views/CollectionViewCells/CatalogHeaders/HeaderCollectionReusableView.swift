@@ -13,9 +13,8 @@ class HeaderCollectionReusableView: UICollectionReusableView {
     
     @IBOutlet weak var headerButton: UIButton!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    func setup(with rail: Rail) {
+        titleLabel.text = rail.name
+        headerButton.setTitle("Ver todos", for: .normal)
     }
-    
 }

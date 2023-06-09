@@ -8,6 +8,19 @@
 import Foundation
 
 enum RailType: Hashable {
+    
+    case movies([Movie]),
+         providers([MovieProvider])
+    
+    var values: [AnyHashable] {
+        switch self {
+        case .movies(let movies):
+            return movies
+        case .providers(let providers):
+            return providers
+        }
+    }
+    
     static func == (lhs: RailType, rhs: RailType) -> Bool {
         switch (lhs, rhs) {
         case (.movies, .movies), (.providers, .providers):
@@ -24,18 +37,6 @@ enum RailType: Hashable {
             hasher.combine(value) // combine with associated value, if it's not `Hashable` map it to some `Hashable` type and then combine result
         case .providers(let value):
             hasher.combine(value) // combine with associated value, if it's not `Hashable` map it to some `Hashable` type and then combine result
-        }
-    }
-    
-    case movies([Movie]),
-         providers([MovieProvider])
-    
-    var values: [AnyHashable] {
-        switch self {
-        case .movies(let movies):
-            return movies
-        case .providers(let providers):
-            return providers
         }
     }
 }

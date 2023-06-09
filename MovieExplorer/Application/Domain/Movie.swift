@@ -16,7 +16,7 @@ struct Movie: Codable, Hashable, ImageUseCase {
     let backdropURL: URL?
     let overview: String?
     let releaseDate: Date?
-    let voteAverage: Double?
+    let voteAverage: String?
     
     static func == (lhs: Movie, rhs: Movie) -> Bool {
         return lhs.id == rhs.id
@@ -33,7 +33,7 @@ struct Movie: Codable, Hashable, ImageUseCase {
         backdropURL = movie.backdropPath
         overview = movie.overview
         releaseDate = movie.releaseDate
-        voteAverage = movie.voteAverage
+        voteAverage = String(format: "%.2f", movie.voteAverage ?? "")
     }
     
     var getBackdropURL: URL? {
