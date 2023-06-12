@@ -96,12 +96,7 @@ class DetailsViewController: UIViewController {
                     collectionViewCell = detailedCell
                     
                 case let item as Cast:
-                    
-                    let castCell = collectionView.dequeueReusableCell(withReuseIdentifier: "castCell", for: indexPath) as! CastCollectionViewCell
-                    
-                    castCell.setup(cast: item)
-                    
-                    collectionViewCell = castCell
+                break
                 default:
                     break
             }
