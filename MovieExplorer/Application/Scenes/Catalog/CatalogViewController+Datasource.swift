@@ -21,7 +21,6 @@ extension CatalogViewController {
                 let simpleMovieCell = collectionView.dequeueReusableCell(withReuseIdentifier: CatalogControllerConstants.posterCollectionCell, for: indexPath) as! PosterCollectionViewCell
                 
                 if let movie = item as? Movie {
-                    print(movie)
                     simpleMovieCell.setup(movie: movie)
                 }
                 
@@ -40,7 +39,6 @@ extension CatalogViewController {
                 let movieCell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: MovieCollectionViewCell.self), for: indexPath) as! MovieCollectionViewCell
   
                 if let movie = item as? Movie {
-                    print(movie)
                     movieCell.embed(in: self, with: movie)
                 }
                 

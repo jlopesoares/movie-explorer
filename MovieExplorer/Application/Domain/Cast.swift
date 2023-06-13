@@ -6,11 +6,7 @@
 //
 
 import Foundation
-
-public struct CastResponse: Codable {
-    public let id: Int
-    public let cast: [Cast]
-}
+import TMDb
 
 public struct Cast: Codable, Hashable, ImageUseCase {
     
@@ -19,7 +15,13 @@ public struct Cast: Codable, Hashable, ImageUseCase {
     let profilePath: String?
     
     public var profileImageURL: URL? {
-        getImageUrl(for: profilePath, with: .medium)
+        getImageUrl(for: profilePath, with: .small)
+    }
+    
+    init(castMember: CastMember) {
+        self.id = castMember.id
+        self.name = castMember.name
+        self.profilePath = castMember.profilePath?.absoluteString
     }
     
 }
