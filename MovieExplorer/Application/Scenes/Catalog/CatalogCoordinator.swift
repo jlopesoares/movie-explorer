@@ -7,10 +7,19 @@
 
 import Foundation
 import UIKit
+import SwiftUI
 
 protocol DetailCoordinateFlow: AnyObject {
     
     func coordinateToDetail(with movieID: Int)
+}
+
+final class HostingController<Content: View>: UIHostingController<Content> {
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        view.setNeedsUpdateConstraints()
+    }
 }
 
 class CatalogCoordinator: Coordinator, DetailCoordinateFlow {

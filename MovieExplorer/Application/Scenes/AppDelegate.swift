@@ -17,17 +17,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         
-        let navController = UINavigationController()
+        let tabController = UITabBarController()
         
         // send that into our coordinator so that it can display view controllers
-        coordinator = AppCoordinator(navigationController: navController)
+        coordinator = AppCoordinator(tabBarController: tabController)
         
         // tell the coordinator to take over control
         coordinator?.start()
         
         // create a basic UIWindow and activate it
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = navController
+        window?.rootViewController = tabController
         window?.makeKeyAndVisible()
         
         return true

@@ -26,7 +26,6 @@ struct DetailView: View {
                 
             }
         }
-        .ignoresSafeArea()
         .task {
             await viewModel.fetchMovieDetails()
         }

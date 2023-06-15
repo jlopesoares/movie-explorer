@@ -8,10 +8,6 @@
 import Foundation
 import TMDb
 
-typealias MovieDetailCompletion = (Result<Movie, Error>) -> ()
-typealias MovieCastCompletion = (Result<[Cast], Error>) -> ()
-
-
 protocol MovieServiceProtocol {
     func fetchPopularMovies() async -> [Movie]
     func fetchUpcomingMovies() async -> [Movie]
