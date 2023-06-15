@@ -17,6 +17,7 @@ protocol MovieServiceProtocol {
     func fetchUpcomingMovies() async -> [Movie]
     func fetchNowPlayingMovies() async -> [Movie]
     func fetchMovieProviders() async -> [MovieProvider]
+    func fetchCast(for movieId: Int) async throws -> [Cast]
 }
 
 class MovieService: MovieServiceProtocol {
@@ -61,7 +62,12 @@ class MovieService: MovieServiceProtocol {
     }
     
     func details(id: Int) async throws -> Movie {
-        try await Movie(movie: tmdbServices.tmdb.movies.details(forMovie: id))
+        let movieDetails = try await tmdbServices.tmdb.movies.details(forMovie: id)
+        return Movie(movie: movieDetails)
+    }
+    
+    func fetchCast(for movieId: Int) async throws -> [Cast] {
+        return try await tmdbServices.tmdb.movies.credits(forMovie: movieId).cast.map({.init(castMember: $0)})
     }
 }
 

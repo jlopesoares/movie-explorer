@@ -43,7 +43,6 @@ class ProviderCollectionViewCell: UICollectionViewCell {
         host?.willMove(toParent: nil)
         host?.view?.removeFromSuperview()
         host?.removeFromParent()
-        print("Cell has been cleaned")
     }
 }
 

@@ -7,77 +7,27 @@
 
 import Foundation
 
-enum DetailSections: Hashable {
-    case header
-    case cast
-    
-}
-
-enum DetailModelType: Hashable {
-    
-    case detailSection(Movie?)
-    case cast(Cast)
-}
-
-final class DetailsViewModel {
+final class DetailsViewModel: ObservableObject {
     
     let movieService: MovieService!
     let movieID: Int!
     
-    var movie: Movie?
-    var cast: [Cast]?
+    @Published private(set) var movie: Movie?
+    @Published private(set) var cast: [Cast]?
     
     init(movieService: MovieService, movieID: Int) {
         self.movieService = movieService
         self.movieID = movieID
-    }
-    
-    func datasource(for section: DetailSections) -> [AnyHashable] {
-        
-        switch section {
-            case .header:
-                
-                guard let movie = movie else {
-                    return []
-                }
-                
-                return [movie]
-                
-            case .cast:
-                
-                guard let cast = cast else {
-                    return []
-                }
-                
-                return cast
-        }
     }
 }
 
 //MARK: - Services
 extension DetailsViewModel {
     
-    func fetchMovieDetails() async -> Result<Void, Error> {
+    func fetchMovieDetails() async {
         do {
             self.movie = try await movieService.details(id: movieID)
-            return .success(())
-        } catch let error {
-            return .failure(error)
-        }
-    }
-    
-    func fetchMovieCast(completion: @escaping MovieCastCompletion) {
-        
-//        movieService.getMovieCast(for: movieId) { result in
-//            switch result {
-//                case .success(let cast):
-//                    self.cast = cast
-//
-//                case .failure(_):
-//                    break
-//            }
-//
-//            completion(result)
-//        }
+            self.cast = try await movieService.fetchCast(for: movieID)
+        } catch _ {}
     }
 }

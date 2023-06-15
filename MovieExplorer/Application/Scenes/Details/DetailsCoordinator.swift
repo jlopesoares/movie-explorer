@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class DetailsCoordinator: Coordinator {
     
@@ -23,14 +24,17 @@ class DetailsCoordinator: Coordinator {
     
     func start() {
         
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let vc = storyboard.instantiateViewController(withIdentifier: String(describing: DetailsViewController.self)) as! DetailsViewController
-        
+//        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+//        let vc = storyboard.instantiateViewController(withIdentifier: String(describing: DetailsViewController.self)) as! DetailsViewController
+//
         let viewModel = DetailsViewModel(movieService: MovieService(tmdbServices: TMDBServices()),
                                          movieID: movieID)
-        vc.viewModel = viewModel
+//        vc.viewModel = viewModel
+//
+//        navigationController.pushViewController(vc, animated: true)
         
-        navigationController.pushViewController(vc, animated: true)
+        let hostingController = UIHostingController(rootView: DetailView(viewModel: viewModel))
+        navigationController.pushViewController(hostingController, animated: true)
     }
     
 }
