@@ -20,6 +20,7 @@ struct DetailView: View {
                            height: proxy.size.height)
                 
                 SinopseView(movie: viewModel.movie, cast: viewModel.cast)
+                    .frame(width: proxy.size.width)
             }
         }
         .ignoresSafeArea()
@@ -59,13 +60,16 @@ struct SinopseView: View {
             Text("Overview")
                 .font(.system(size: 24))
                 .fontWeight(.bold)
+                .padding()
             
             Text(movie?.overview ?? "")
                 .font(.system(size: 16))
+                .padding()
             
             Text("Cast And Crew")
                 .font(.system(size: 24))
                 .fontWeight(.bold)
+                .padding()
             
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack {
