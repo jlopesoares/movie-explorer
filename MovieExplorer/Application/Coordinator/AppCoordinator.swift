@@ -25,9 +25,15 @@ class AppCoordinator {
         moviesNavigationController.tabBarItem = UITabBarItem(title: "Movies",
                                                              image: .init(systemName: "popcorn"),
                                                              selectedImage: .init(systemName: "popcorn.fill"))
-        moviesNavigationController.toolbar.tintColor = UIColor(named: "mainTintColor")
+        moviesNavigationController.toolbar.tintColor = .mainTintColor
         
-        moviesNavigationController.setNavigationBarHidden(true, animated: false)
+        
+        let navBarAppearance = UINavigationBarAppearance()
+        navBarAppearance.configureWithOpaqueBackground()
+        navBarAppearance.backgroundColor = .mainBackgroundColor
+        moviesNavigationController.navigationBar.standardAppearance = navBarAppearance
+        moviesNavigationController.navigationBar.scrollEdgeAppearance = navBarAppearance
+        
         
         childCoordinators.append(catalogCoordinator)
         
@@ -43,8 +49,7 @@ class AppCoordinator {
         
         
         childCoordinators.append(tvShowsCoordinator)
-        
-        tabBarController.tabBar.tintColor = UIColor(named: "mainTintColor")
+        tabBarController.tabBar.tintColor = .mainTintColor
         
         tabBarController.setViewControllers([moviesNavigationController, tvShowsNavigationController], animated: false)
     }

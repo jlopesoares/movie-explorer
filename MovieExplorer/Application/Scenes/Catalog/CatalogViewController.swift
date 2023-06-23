@@ -34,6 +34,11 @@ class CatalogViewController: UIViewController, UICollectionViewDelegate {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
     func getCatalogData() {
         Task { [weak self] in
             await self?.viewModel.getMovies()
@@ -42,7 +47,7 @@ class CatalogViewController: UIViewController, UICollectionViewDelegate {
     }
     
     func setupUI() {
-        collectionView.backgroundColor = UIColor(named: "mainBackgroundColor")
+        collectionView.backgroundColor = .mainBackgroundColor
     }
     
     func updateCollectionView() {

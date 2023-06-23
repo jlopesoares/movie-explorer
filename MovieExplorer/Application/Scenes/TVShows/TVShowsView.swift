@@ -17,15 +17,15 @@ struct TVShowsView: View {
             TabView {
                 ForEach(viewModel.tvShows) { show in
                     ZStack {
+                        
                         KFImage(show.getPosterURL(with: .medium))
                             .resizable()
                             .ignoresSafeArea()
-                        .scaledToFill()
+                            .scaledToFill()
                         
                         LinearGradient(colors: [.clear, .black.opacity(0.6)],
                                        startPoint: .init(x: 0.0, y: 0.8),
                                        endPoint: .init(x: 0.0, y: 1.0))
-                        
                     }
                 }
             }
@@ -33,7 +33,6 @@ struct TVShowsView: View {
                 await viewModel.fetchPopularTVShows()
             }
             .tabViewStyle(.page(indexDisplayMode: .always))
-            .frame(height: proxy.size.height)
         }
     }
 }
