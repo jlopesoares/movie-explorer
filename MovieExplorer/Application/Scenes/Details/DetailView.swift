@@ -23,10 +23,8 @@ struct DetailView: View {
                 DetailsSinopseView(movie: viewModel.movie,
                                    cast: viewModel.cast)
                 .frame(width: proxy.size.width)
-                
             }
         }
-        .ignoresSafeArea()
         .task {
             await viewModel.fetchMovieDetails()
         }
