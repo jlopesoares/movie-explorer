@@ -14,11 +14,12 @@ class CatalogViewController: UIViewController, UICollectionViewDelegate {
     var viewModel: CatalogViewModel!
     
     // Outlets
-    @IBOutlet weak var collectionView: UICollectionView! {
+    @IBOutlet weak var collectionView: CatalogCollectionView! {
         didSet {
-            registerCells()
+            collectionView.registerCells()
             collectionView.delegate = self
-            collectionView.collectionViewLayout = createCompositionalLayout()
+            collectionView.updateCatalogType(.rails)
+            collectionDataSource = collectionView.setupCollectionProvider(container: self)
         }
     }
     
@@ -29,9 +30,7 @@ class CatalogViewController: UIViewController, UICollectionViewDelegate {
         super.viewDidLoad()
         
         setupUI()
-        setupCollectionProvider()
         getCatalogData()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -69,10 +68,10 @@ extension CatalogViewController {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let item = viewModel.item(for: indexPath)
-        
+
         switch item {
         case let item as Movie:
-            catalogCoordinator.coordinateToDetail(with: item.id)
+            catalogCoordinator.coordinateToDetail(with: item.movieID)
         case let item as MovieProvider:
             break
         default:
