@@ -10,7 +10,8 @@ import TMDb
 
 struct Movie: Codable, Hashable, ImageUseCase {
     
-    let id: Int
+    let id = UUID()
+    let movieID: Int
     let title: String
     let posterURL: URL?
     let backdropURL: URL?
@@ -30,7 +31,7 @@ struct Movie: Codable, Hashable, ImageUseCase {
     }
     
     init(movie: TMDb.Movie) {
-        id = movie.id
+        movieID = movie.id
         title = movie.title
         posterURL = movie.posterPath
         backdropURL = movie.backdropPath

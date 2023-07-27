@@ -1,57 +1,35 @@
 //
-//  CatalogViewController+UIFactory.swift
+//  CatalogCollectionView+Layout.swift
 //  MovieExplorer
 //
-//  Created by João Pedro on 18/02/2022.
+//  Created by João Pedro Soares on 22/07/2023.
 //
 
 import UIKit
 
-//MARK: - Register
-extension CatalogViewController {
-    
-    func registerCells() {
-        
-        collectionView.register(MovieCollectionViewCell.self, forCellWithReuseIdentifier: String(describing: MovieCollectionViewCell.self))
-        collectionView.register(ProviderCollectionViewCell.self, forCellWithReuseIdentifier: String(describing: ProviderCollectionViewCell.self))
-        
-        collectionView.register(
-            UINib(nibName: CatalogControllerConstants.posterCollectionCell, bundle: .main),
-            forCellWithReuseIdentifier: CatalogControllerConstants.posterCollectionCell
-        )
-   
-        collectionView.register(
-            UINib(nibName: "HeaderCollectionReusableView", bundle: .main),
-            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerCollectionReausableView"
-        )
-    }
-}
-
-//MARK: - Supplementary Views
-extension CatalogViewController {
-    
-    func detailedSectionHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
-        NSCollectionLayoutBoundarySupplementaryItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(50)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
-    }
-}
-
-
 //MARK: - CollectionViewLayouts
-extension CatalogViewController {
+extension CatalogCollectionView {
     
-    func createCompositionalLayout() -> UICollectionViewCompositionalLayout {
+    func gridSection() -> NSCollectionLayoutSection {
         
-        return UICollectionViewCompositionalLayout { (sectionNumber, env) -> NSCollectionLayoutSection? in
-            
-            switch sectionNumber {
-                case 0:
-                    return self.nowPopularSection()
-                case 1:
-                    return self.providersSection()
-                default:
-                    return self.posterSection()
-            }
-        }
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5),
+                                              heightDimension: .fractionalHeight(1))
+        
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 8,
+                                                     leading: 0,
+                                                     bottom: 8,
+                                                     trailing: 8)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                               heightDimension: .absolute(230.0))
+        
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsetsReference = .layoutMargins
+        section.interGroupSpacing = 24
+        return section
     }
     
     func nowPopularSection() -> NSCollectionLayoutSection {
@@ -129,5 +107,13 @@ extension CatalogViewController {
         section.boundarySupplementaryItems = [detailedSectionHeader()]
       
         return section
+    }
+}
+
+//MARK: - Supplementary Views
+extension CatalogCollectionView {
+    
+    func detailedSectionHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
+        NSCollectionLayoutBoundarySupplementaryItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(50)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
     }
 }

@@ -9,13 +9,14 @@ import Foundation
 import TMDb
 
 struct TVShow: Identifiable, ImageUseCase, Hashable {
-    var id: Int
+    var id = UUID()
+    var tvShowID: Int
     var name: String
     let posterURL: URL?
     let backdropURL: URL?
     
     init(tvShow: TMDb.TVShow) {
-        self.id = tvShow.id
+        self.tvShowID = tvShow.id
         self.name = tvShow.name
         self.posterURL = tvShow.posterPath
         self.backdropURL = tvShow.backdropPath
