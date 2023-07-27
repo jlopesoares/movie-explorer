@@ -29,8 +29,9 @@ class AppCoordinator {
         
         
         let navBarAppearance = UINavigationBarAppearance()
-        navBarAppearance.configureWithOpaqueBackground()
-        navBarAppearance.backgroundColor = .mainBackgroundColor
+        navBarAppearance.backgroundColor = .black
+        navBarAppearance.configureWithDefaultBackground()
+        
         moviesNavigationController.navigationBar.standardAppearance = navBarAppearance
         moviesNavigationController.navigationBar.scrollEdgeAppearance = navBarAppearance
         
@@ -47,11 +48,24 @@ class AppCoordinator {
 
         tvShowsNavigationController.setNavigationBarHidden(true, animated: false)
         
+        let searchNavigationController = UINavigationController()
+        let searchCoordinator = SearchCoordinator(navigationController: searchNavigationController)
+        searchCoordinator.start()
+        searchNavigationController.tabBarItem = UITabBarItem(title: "Search",
+                                                             image: .init(systemName: "magnifyingglass"),
+                                                             selectedImage: .init(systemName: "magnifyingglass.fill"))
+        searchNavigationController.toolbar.tintColor = .mainTintColor
+        searchNavigationController.navigationBar.standardAppearance = navBarAppearance
+        searchNavigationController.navigationBar.scrollEdgeAppearance = navBarAppearance
+        
         
         childCoordinators.append(tvShowsCoordinator)
         tabBarController.tabBar.tintColor = .mainTintColor
         
-        tabBarController.setViewControllers([moviesNavigationController, tvShowsNavigationController], animated: false)
+        tabBarController.setViewControllers([moviesNavigationController,
+                                             tvShowsNavigationController,
+                                             searchNavigationController],
+                                            animated: false)
     }
     
     func childDidFinish(_ child: Coordinator?) {
